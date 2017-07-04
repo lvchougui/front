@@ -1,0 +1,96 @@
+.vux-swiper-item img {
+	width: 100%;
+}
+
+.vux-indicator {
+	bottom: 4px !important;
+}
+
+.vux-indicator .vux-icon-dot {
+	background-color: rgba(0, 0, 0, 0.12) !important;
+	box-shadow: 0 0 2px rgba(255, 255, 255, 0.24)
+}
+
+.vux-indicator .active {
+	background-color: #fafafa !important;
+}
+
+.vux-tab {
+	height: 36px !important;
+}
+
+.vux-tab .vux-tab-item {
+	line-height: 36px !important;
+}
+
+.vux-tab-selected {
+	color: #58bc9a !important;
+	border-bottom: 3px solid #58bc9a !important;
+}
+
+.vux-tab-ink-bar {
+	background-color: #58bc9a !important;
+}
+
+.num-btn .weui_btn {
+	font-size: 16px;
+	
+}
+.weui_btn {
+	border-radius: 0 !important;
+	}
+
+.weui_btn_primary {
+	background-color: #000000 !important;
+}
+
+.weui_btn+.weui_btn {
+	margin: 0 !important;
+}
+
+.vux-number-selector {
+	color: #323232 !important;
+}
+
+.weui_btn_plain_default {
+	border: 1px solid #c8c8c8 !important;
+}
+
+.vux-popup-picker-header {
+	color: #58bc9a !important;
+}
+
+.weui_cells,
+.weui_cell_ft,
+.weui_label {
+	font-size: 0.875em;
+}
+
+.weui_cell:before{
+	right: 15px !important;
+	width: auto !important;
+}
+
+.showcase .vux-slider>.vux-swiper {
+	height: 320px !important;
+}
+
+.showcase .vux-swiper-item img {
+	width: 100% !important;
+	height: 320px !important;
+	object-fit: contain !important;
+}
+
+.vux-slider {
+	z-index: 1;
+}
+
+.edit-address .weui_label {
+	min-width: 90px;
+	font-size: 14px;
+}
+
+.vux-header {
+	// background-color: rgba(218, 83, 83, 0.75) !important;
+	// -webkit-backdrop-filter: saturate(180%) blur(20px);
+}

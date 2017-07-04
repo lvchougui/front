@@ -1,0 +1,3 @@
+export const ORDER_FOR_PAY = 'ORDER_FOR_PAY'
+export const SET_ORDER_ADDRESS = 'SET_ORDER_ADDRESS'
+export const SET_ORDER_COUPON = 'SET_ORDER_COUPON'
