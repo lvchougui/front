@@ -1,22 +1,17 @@
 <template>
     <div class="tabbar">
-        <div class="tabbar-item" @click="tab1">
-            <p class="tabbar-text" :class="{'text_selected':selected==1,'text_normal':selected!=1}">优选</p>
-        </div>
-        <div class="tabbar-item" @click="tab2">
-            <!-- <div class="tabbar-icon" :class="{'icon_home_selected':selected==1,'icon_home':selected!=1}"></div> -->
-            <p class="tabbar-text" :class="{'text_selected':selected==2,'text_normal':selected!=2}">拍卖</p>
-        </div>
-        <div class="tabbar-item" @click="tab3">
-            <p class="tabbar-text" :class="{'text_selected':selected==3,'text_normal':selected!=3}">好物</p>
-        </div>
-        <div class="tabbar-item" @click="tab4">
-            <p class="tabbar-text" :class="{'text_selected':selected==4,'text_normal':selected!=4}">品牌</p>
-        </div>
-        <div class="tabbar-item" @click="tab5">
-            <p class="tabbar-text" :class="{'text_selected':selected==5,'text_normal':selected!=5}">我的</p>
+        <div style="width:70%;display:flex;flex-direction:row;margin-left:15%;margin-top:20px;">
+            <div style="flex:1;">
+                <img class="tabbar-text" :class="{'text_selected':selected==1,'text_normal':selected!=1}" src="../../assets/img/syyj/top_master.png"  @click="tab1"/>
+                <img class="tabbar-text" style="margin-left:10px;" :class="{'text_selected':selected==2,'text_normal':selected!=2}" src="../../assets/img/syyj/top_product.png"  @click="tab2"/>
+                <img class="tabbar-text" style="margin-left:10px;" :class="{'text_selected':selected==3,'text_normal':selected!=3}" src="../../assets/img/syyj/top_cert.png"  @click="tab3"/>
+                <img class="tabbar-text" style="margin-left:10px;" :class="{'text_selected':selected==4,'text_normal':selected!=4}" src="../../assets/img/syyj/top_article.png"  @click="tab4"/>
+            </div>
+            <img style="height:36px;margin-top:22px;" src="../../assets/img/syyj/top_brand.png"  @click="tab5"/>
         </div>
     </div>
+
+</div>
 </template>
 <script>
     export default {
@@ -80,33 +75,22 @@
     .tabbar {
         position: fixed;
         top: 0;
-        background-color: rgba(255, 255, 255, 0.75);
+        background-color: rgba(100, 100, 100, 0.75);
         box-shadow: 0px -2px 6px 0px rgba(0, 0, 0, 0.12);
-        height: 40px;
+        height: 100px;
         width: 100%;
         -webkit-backdrop-filter: saturate(180%) blur(20px);
+        z-index: 9999;
     }
 
     .tabbar-item {
-        width: 20%;
         text-align: center;
-        float: left;
-        height: inherit;
     }
 
     .tabbar-text {
-        height: 40px;
-        line-height: 40px;
+        height: 80px;
         text-align: center;
         font-size: 1.2em !important;
-    }
-
-    .tabbar-icon {
-        width: 22px;
-        height: 22px;
-        background-repeat: no-repeat;
-        background-size: 22px 22px;
-        margin: 6px auto 6px auto;
     }
 
     .text_normal {

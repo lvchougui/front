@@ -5,7 +5,9 @@ import App from './app'
 import $ from 'jquery'
 import config from './appConfig'
 import iview from 'iview/dist/iview.min'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
 
+Vue.use(VueAwesomeSwiper)
 Vue.use(iview)
 Vue.use(VueRouter)
 Vue.use(VueResource)

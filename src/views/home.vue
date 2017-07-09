@@ -1,29 +1,4 @@
 <style>
-    .home-top {
-        background-color: #fafafa;
-        border-bottom: 1px solid rgb(220, 220, 220);
-    }
-
-    .home-tabs {
-        display: -webkit-box;
-        overflow-x: scroll;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .home-tabs li {
-        padding-left: 15px;
-        padding-right: 15px;
-        line-height: 30px;
-        text-align: center;
-        color: grey;
-        font-size: 1.3em;
-    }
-
-    .home-tabs-selected {
-        border-bottom: 3px solid #000000 !important;
-        color: black !important;
-    }
-
     .home-preference-cover {
         width: 100%;
         height: auto;
@@ -189,48 +164,124 @@
       transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
   }
   .slide-fade-enter, .slide-fade-leave-to
-  /* .slide-fade-leave-active for <2.1.8 */ {
+  {
       transform: translateX(10px);
       opacity: 0;
   }  
+  .top_bg{
+    height:100px;
+    background: url('../assets/img/syyj/bg1.jpg');
+}
+.index-product{
+    width: 100%;
+    height: auto;
+    background: url('../assets/img/syyj/bg2.jpg');
+    margin-top: -5px;
+}
+.verticle-line{
+    width:2px;
+    height:70px;
+    background-color:#c7c7c7;
+    margin-top: 15px;
+    margin-left: 30px; 
+    margin-right: 30px;
+}
+.search-part{
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+    flex: 1;
+    margin-top: 30px;
+    border: 2px solid black;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+.search-input{
+    flex: 1;
+    padding-left: 20px;
+    padding-right: 20px;
+    line-height: 40px;
+}
+.search-btn{
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    padding-left: 12px;
+    padding-right: 10px;
+}
+.contact-part{
+    display: flex;
+    flex-direction: row;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+}
+.index-label-text{
+    font-size:28px;
+    color:black;
+    text-align:center;
+    font-family: KaiTi,KaiTi_GB2312 ! important;
+    font-weight:900;
+    margin: 0 auto;
+    border-bottom: 2px dashed black;
+    line-height: 1;
+}
 </style>
 <template>
     <!-- <Slider :value.sync="value" range></Slider> -->
-
-
-    <div style="line-height:1;">
-        <img :src="serviceRule" class="home-preference-cover" v-if="serviceRule && serviceRule.length>0">
+    <!-- <div class="top_bg"></div> -->
+    <div>
+        <swiper :options="swiperOption" ref="mySwiperA">
+            <!-- 幻灯内容 -->
+            <swiper-slide v-for="item in advlist" >
+                <img :src="item.cover" :style="secondAdv" @click="goPage(item)"/>
+            </swiper-slide>
+            <!-- 以下控件元素均为可选 -->
+            <div class="swiper-pagination"  slot="pagination"></div>
+            <div class="swiper-button-prev" slot="button-prev"></div>
+            <div class="swiper-button-next" slot="button-next"></div>
+            <!-- <div class="swiper-scrollbar"   slot="scrollbar"></div> -->
+        </swiper>
     </div>
-    
     <!-- <Page :current="1" :total="100"  show-total @on-change="change"></Page> -->
 
-    <div style="width:100%;height:5px;background-color:#efefef;" v-if="serviceRule && serviceRule.length>0"></div>
-    <div :id="'anchor-'+1" class="index-part" style="display:flex;flex-direction:row;padding-top:5px;padding-bottom:5px;" v-if="advlist && advlist.length>0">
-        <img :src="advlist[0].img" @click="goPage(advlist[0])" :style="firstAdv" />
-        <div style="margin-left:5px;flex:1;display:flex;flex-direction:column;">
-            <img :src="advlist[1].img" :style="secondAdv" @click="goPage(advlist[1])">
-            <img :src="advlist[2].img" :style="secondAdv" style="margin-top:5px" @click="goPage(advlist[2])">
+    <div class="index-product" :id="'anchor-'+1">
+        <div style="display:flex;flex-direction:column;width:70%;margin-left:15%;background-color:white;">
+            <div style="display:flex;flex-direction:row;height:100px;padding-left:80px;padding-right:80px;">
+                <div style="font-size:28px;color:black;height:100%;text-align:center;line-height:100px;font-family: KaiTi,KaiTi_GB2312 ! important;font-weight:900;">上玉元吉</div>
+                <div class="verticle-line"></div>
+                <div class="search-part">
+                    <div style="color:black;line-height:36px;padding-right:20px;padding-left:20px;background-color:#c7c7c7;">商品</div>
+                    <input v-model="searchText" placeholder="题材、样式" class="search-input">
+                    <div class="search-btn" @click="search">
+                        <img src="../assets/img/syyj/search.png" style="width:20px;height:20px;margin-top:8px;">
+                    </div>
+                </div>
+                <div class="verticle-line"></div>
+                <div class="contact-part">
+                    <img src="../assets/img/syyj/telephone.png" style="width:50px;height:50px;">
+                    <div style="margin-left:15px;display:flex;flex-direction:column;font-family: KaiTi,KaiTi_GB2312 ! important;color:black;">
+                        <div>客服热线</div>
+                        <div>0512-67526713</div>
+                    </div>
+                </div>
+            </div>
+            <div style="width:100%;height:2px;background-color:#e7e7e7;"></div>
+            <div class="index-label-text" style="margin-top:30px;">作品赏析</div>
+            <transition-group name="slide-fade">
+
+            </transition-group>
         </div>
     </div>
-    <div style="width:100%;height:5px;background-color:#efefef;"></div>
-
-
-    <button  @click="animbtn">anim</button>
+    
+    <!-- <button  @click="animbtn">anim</button> -->
     <transition-group name="slide-fade">
         <div :id="'anchor-'+2" class="index-part" v-for="item in mainData" style="background-color:white;">
-            <div v-if="(item.type == 'preference' || item.type == 'special' || item.type == 'channel') && item.style != 2" style="line-height:1">
-                <img :src="item.data.cover" class="home-preference-cover" @click="goItemDetail(item)">
-                <ul class="slide-box" style="margin-top:5px;padding-left:10px;padding-right:10px;" v-if="item.data.list &&item.data.list.length>0">
-                    <li class="slide-item" style="padding-bottom:10px;" v-for="item in item.data.list" @click="goGood(item)">
-                        <img :src="item.img" style="width:100px;height:100px;" />
-                        <div style="color:grey;width:100px;margin-top:10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;word-break:keep-all;">{{item.name}}</div>
-                        <div style="color:#58bc9a;margin-top:8px;">¥{{item.price}}</div>
-                    </li>
-                </ul>
-            </div>  
+
         </div>
     </transition-group>
-    <see-more :on-see="loadMore"></see-more>
+    <bottom></bottom>
 </template>
 
 <script>
@@ -238,6 +289,7 @@
     import SwiperItem from 'vux/dist/components/swiper-item'
     import SeeMore from './partial/see-more'
     import {Page} from 'iview';
+    import bottom from './partial/bottom'
 
 
     export default {
@@ -253,7 +305,8 @@
             Swiper,
             SwiperItem,
             SeeMore,
-            Page
+            Page,
+            bottom
         },
         ready() {
             document.body.style.overflow = 'visible';
@@ -291,20 +344,39 @@
                     height: window.screen.availWidth / 2 * 1.288 + 'px'
                 },
                 secondAdv: {
-                    width: window.screen.availWidth / 2 - 5 + 'px',
-                    height: (window.screen.availWidth / 2 * 1.288 - 5) / 2 + 'px'
-                }
-            }
+                    width: window.screen.availWidth + 'px',
+                    height: window.screen.availWidth * 760 / 1920 + 'px'
+                },
+                swiperOption: {
+                    // 所有配置均为可选（同Swiper配置）  
+                    notNextTick: true,
+                    autoplay: 5000,
+                    grabCursor : true,
+                    setWrapperSize :true,
+                    autoHeight: true,
+                    pagination : '.swiper-pagination',
+                    paginationClickable :true,
+                    prevButton:'.swiper-button-prev',
+                    nextButton:'.swiper-button-next',
+                    // scrollbar:'.swiper-scrollbar',
+                    mousewheelControl : false,
+                    observeParents:true,
+                    onTransitionStart(swiper){
+                      // console.log(swiper)
+                  }
+              }
+          }
+      },
+
+      methods: {
+        animbtn(){
+            console.log("====");
+            this.getRecommendList();
         },
-        methods: {
-            animbtn(){
-                console.log("====");
-                this.getRecommendList();
-            },
-            change(page){
-                console.log(page);
-            },
-            goAnchor(selector) {
+        change(page){
+            console.log(page);
+        },
+        goAnchor(selector) {
             // var anchor = $.$el.querySelector(selector);
             var anchor = $(selector);
             if (anchor[0]) {
@@ -351,16 +423,29 @@
         })
     },
     getAdvList() {
-        this.$http.post('', {
-            act: 'configure_getListByType',
-            type: 'webpage'
-        }).then((result) => {
-            var resp = result.data;
-            log(resp);
-            if (result && result.data && result.data.code == 200) {
-                this.advlist = result.data.datalist;
-            }
+        // this.$http.post('', {
+        //     act: 'configure_getListByType',
+        //     type: 'webpage'
+        // }).then((result) => {
+        //     var resp = result.data;
+        //     log(resp);
+        //     if (result && result.data && result.data.code == 200) {
+        //         this.advlist = result.data.datalist;
+        //     }
+        // })
+
+        var url = "http://47.94.206.22:3001/api/banner/getBannerList";
+        this.$http.get(
+            url
+            )
+        .then((res) => {
+            if (res.status == 200) {
+                this.advlist = res.data;
+            };
         })
+        .catch((res) => {
+            log("error:" + JSON.stringify(res));
+        });
     },
     goSingleTabPosition(position) {
         this.offset = 0;
@@ -465,24 +550,8 @@
         },
         goPage(item) {
             log(item);
-            if (item.type == 'webpage') {
-                window.location.href = item.page;
-            } else if (item.type == 'native') {
-                // 期次详情
-                if (item.page == 'stagedetail') {
-                    this.goStageBanner(item.params.id);
-                }
-                // 拍品详情
-                else if (item.page == 'auctiondetail') {
-                    this.goAuctionBanner(item.params.id);
-                } else if (item.page == 'channeldetail') {
-                    this.goChannelBanner(item.params.id);
-                } else if (item.page == 'branddetail') {
-                    this.goBrandBanner(item.params.id);
-                } else if (item.page == 'preferencedetail') {
-                    this.goPreferenceBanner(item.params.id);
-                }
-            }
+            window.location.href = item.cover_link;
+            
         },
         goItemDetail: function(item) {
             log(item);
@@ -600,6 +669,15 @@
             };
         },
 
-    }
+    },
+    computed: {
+        swiper() {
+          return this.$refs.mySwiperA.swiper
+      }
+  },
+  mounted() {
+    console.log("每次切换都会触发我");
+    this.swiper.slideTo(3, 1000, false)
+},
 }
 </script>

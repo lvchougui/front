@@ -250,7 +250,7 @@
 			// }
 			// alert(this.browserType);
 
-            const self = this;
+			const self = this;
 			setTimeout(function() {
 				if (window.JsBridge.type == 'web') {
 					// alert('web');
@@ -273,54 +273,18 @@
 				// });
 
 				var url = "http://121.40.154.32:3001/api/article/all";
+				this.$http.get(
+					url
+					)
+				.then((res) => {
 
-                  // Vue.http.headers.common['X-Yipai-Key'] = "";
+					if (res.status == 200) {
 
-                  /*已拦截跨源请求：同源策略禁止读取位于 http://192.168.1.228:3001/api/article/all 的远程资源。（原因：来自 CORS 预检通道的 CORS 头 'Access-Control-Allow-Headers' 的令牌 'x-yipai-key' 无效）。 */
-
-                 //  this.$http.get(url).then(function(data){
-	                //     // var json=data.body;
-	                //     // this.data=eval("(" + json +")");
-	                //     log(data);
-	                // },function(response){
-	                //     console.info(response);
-	                // });
-
-	                this.$http.get(
-	                	url
-	                	)
-	                .then((res) => {
-			      // resolve(res);
-			      // log("res:" + JSON.stringify(res));
-
-			      if (res.status == 200) {
-			      	this.data = res.data.data;
-
-			      	// log('this.data:' + JSON.stringify(this.data));
-
-			  //     	this.keys = [];
-			  //     	this.values = [];
-
-			  //     	if (this.data.length > 0) {
-					// 	for (var i = 0; i < this.data.length; i++) {
-					// 		var item = this.data[i];
-
-					// 		// this.keys = this.keys.concat(Object.keys(item));
-					// 		// this.values = this.values.concat(Object.values(item));
-
-					// 		this.keys = this.keys.concat(item.name);
-					// 		this.values = this.values.concat(item.list);
-					// 	};
-					// };
-					
-					// log(JSON.stringify(this.keys));
-					// log(JSON.stringify(this.values));
-				};
-			})
-	                .catch((res) => {
-			      // reject(res);
-			      log("error:" + JSON.stringify(res));
-			  });
+					};
+				})
+				.catch((res) => {
+					log("error:" + JSON.stringify(res));
+				});
 
 
 
@@ -398,9 +362,9 @@
 			unLogined(){
 				if (this.browserType == 'web') {
 					this.$route.router.go('/login');
-			    } else {
-			        window.location.href = "yipai://com.tiangong.yipai/login";
-			    }
+				} else {
+					window.location.href = "yipai://com.tiangong.yipai/login";
+				}
 			}
 		},
 		data() {
@@ -409,7 +373,7 @@
 				// data: [{"订单问题" : ["修改订单","取消订单","差价问题","缴税后如何报销"]}, {"售后问题" : ["申请售后退货","商品破损处理","退货运费承担","退货后何时退款"]}, {"支付问题" : ["解绑银行卡","支付方式","为何无法微信支付","付款后显示待支付"]},{"物流问题" : ["催促发货","催促物流","能否包邮","更改收件地址"]},{"优惠券问题" : ["如何获取优惠券","如何使用优惠券","优惠券会过期吗","优惠券无法使用"]}],
 				data: [],
 				payToast: false,
-	            payTips: '',
+				payTips: '',
 				// keys: [],
 				// values: [],
 			}

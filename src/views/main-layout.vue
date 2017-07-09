@@ -40,6 +40,6 @@
 
 <style>
 	.main-content {
-		padding-bottom: 51px;
+		
 	}
 </style>
