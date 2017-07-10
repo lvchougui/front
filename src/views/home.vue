@@ -101,7 +101,7 @@
     overflow:hidden; 
 }
 .product-rec-list{
-    
+
 }
 .product-rec-part .list-scroll{ width:100%;overflow:hidden; position:relative;}
 .product-rec-part .list-scroll ul{ position:absolute; left:0; top:0; overflow:hidden;}
@@ -158,31 +158,33 @@
                 <div class="product-rec-list" style="background:#e7e7e7;padding:10px;">
                     <div class="list-scroll" :style="{height:scrollHeight}">
                         <ul :style="{width:scrollWidth,height:scrollHeight}">
-                         <li v-for="item in productList" :style="proStyle"><img :src="item.cover+'?imageView2/1/w/2000/h/1200/interlace/1'" :style="proImgStyle"/><div class="link" :style="{width:proStyle.width}">{{item.name}}</div></li>
-                     </ul>
-                 </div>
-             </div> 
+                           <li v-for="item in productList" :style="proStyle"><img :src="item.cover+'?imageView2/1/w/2000/h/1200/interlace/1'" :style="proImgStyle"/><div class="link" :style="{width:proStyle.width}">{{item.name}}</div></li>
+                       </ul>
+                   </div>
+               </div> 
 
-         </div>
-     </div>
- </div>
+           </div>
+       </div>
+   </div>
 
- <div :id="'anchor-'+2" class="index-cert">
+   <div :id="'anchor-'+2" class="index-cert">
     <div style="display:flex;flex-direction:column;width:70%;margin-left:15%;background-color:white;">
         <div class="index-label-text" style="margin-top:50px;">证书查询</div>
         <div class="cert-search-part">
             <input v-model="searchText" placeholder="证书编号" class="search-input" >
             <div  @click="searchCert" style="background-color:#ae0000;color:white;line-height:45px;padding-left:15px;padding-right:15px;font-size:18px;font-family: KaiTi,KaiTi_GB2312 ! important;font-weight:800;cursor:pointer;">
-               查询
-           </div>
-       </div>
-   </div>
-   <img src="../assets/img/syyj/index_temp.jpg" style="width:100%;height:auto;5">
+             查询
+         </div>
+     </div>
+ </div>
+ <img src="../assets/img/syyj/index_temp.jpg" style="width:100%;height:auto;5">
 </div>
 <div :id="'anchor-'+3" class="index-article">
     <div style="display:flex;flex-direction:column;width:70%;margin-left:15%;background-color:white;">
         <div class="index-label-text" style="margin-top:50px;">玉雕文化</div>
-
+        <div class="product-rec-part">
+            <ul style="width:100%;"></ul>
+        </div> 
     </div>
 </div>
 <bottom></bottom>
@@ -221,19 +223,20 @@
             this.screenWidth = window.innerWidth / 2 - 12 + 'px';
             this.getAdvList();
             this.getRecommendProductList();
+            this.getArticleList();
             this.scrollNum = 0;
 
         },
         beforeDestroy() {
-         clearInterval(this.prodIntval);
-     },
-     data() {
+           clearInterval(this.prodIntval);
+       },
+       data() {
         return {
             value: [20, 50],
             offset: 0,
             max: 10,
             productList: [],
-
+            articleList:[],
             preference: [],
             master: [],
             list: [],
@@ -343,52 +346,48 @@
             },
 
             getRecommendProductList() {
-        // var url = "http://47.94.206.22:3001/api/product/frontGetProductList";
-        var url = "http://192.168.1.228:3001/api/product/frontGetProductList";
-        this.$http.post(url, {
-            page:1,
-            size:18,
-            name:''
-        }).then((result) => {
-
-            this.productList = result.data;
-
-            var that = this;
-            // var scrollChange = setInterval(that.autoscroll(), 5000);
-            this.intval();
-                //鼠标悬停，暂停滚动
-                // $(".list-scroll ul").mouseover(function () {
-                //     $('.list-scroll ul').stop()
-                //     clearInterval(that.prodIntval);
-                // });
-                // 鼠标移走，滚动继续
-                // $('.list-scroll ul').mouseout(function () {
-                //     // scrollChange = setInterval(that.autoscroll(), 5000);
-                //     that.intval();
-                // });
-            })
-    },
-    loadMore() {
-        if (this.singleTabPosition == 0) {
-            setTimeout(function() {
-                this.offset = this.offset + this.max;
-                this.$http.post('', {
-                    act: 'recommend_getComList',
-                    offset: this.offset,
-                    max: this.max,
-                    group: "recommend"
+                var url = "http://192.168.1.228:3001/api/product/frontGetProductList";
+                this.$http.post(url, {
+                    page:1,
+                    size:18,
+                    name:''
                 }).then((result) => {
-                    if (result.data.code == 229) {
-                        this.temp = [];
-                        this.$broadcast('$InfiniteLoading:noMore');
-                    } else {
-                        this.temp = result.data.datalist;
-                    }
+                    this.productList = result.data;
+                    var that = this;
+                    this.intval();
+
                 })
-                this.mainData = this.mainData.concat(this.temp);
-                this.$broadcast('$InfiniteLoading:loaded');
-            }.bind(this), 1000);
-        } else {
+            },
+            getArticleList(){
+             var url = "http://192.168.1.228:3001/api/article/frontGetArticleList";
+             this.$http.post(url, {
+                page:1,
+                size:3
+            }).then((result) => {
+                this.articleList = result.data;
+            })
+        },
+        loadMore() {
+            if (this.singleTabPosition == 0) {
+                setTimeout(function() {
+                    this.offset = this.offset + this.max;
+                    this.$http.post('', {
+                        act: 'recommend_getComList',
+                        offset: this.offset,
+                        max: this.max,
+                        group: "recommend"
+                    }).then((result) => {
+                        if (result.data.code == 229) {
+                            this.temp = [];
+                            this.$broadcast('$InfiniteLoading:noMore');
+                        } else {
+                            this.temp = result.data.datalist;
+                        }
+                    })
+                    this.mainData = this.mainData.concat(this.temp);
+                    this.$broadcast('$InfiniteLoading:loaded');
+                }.bind(this), 1000);
+            } else {
                 //TODO 分页加载
                 setTimeout(function() {
 
