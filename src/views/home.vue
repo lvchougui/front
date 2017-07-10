@@ -139,7 +139,7 @@
     </div>
     <!-- <Page :current="1" :total="100"  show-total @on-change="change"></Page> -->
 
-    <div class="index-product" :id="'anchor-'+1">
+    <div class="index-product" >
         <div style="display:flex;flex-direction:column;width:70%;margin-left:15%;background-color:white;">
             <div style="display:flex;flex-direction:row;height:100px;padding-left:80px;padding-right:80px;">
                 <div style="font-size:28px;color:black;height:100%;text-align:center;line-height:100px;font-family: KaiTi,KaiTi_GB2312 ! important;font-weight:900;">上玉元吉</div>
@@ -160,32 +160,32 @@
                     </div>
                 </div>
             </div>
-            <div style="width:100%;height:2px;background-color:#e7e7e7;"></div>
-            <div class="index-label-text" style="margin-top:50px;">作品赏析</div>
+            <div style="width:100%;height:2px;background-color:#e7e7e7;" :id="'anchor-'+1"></div>
+            <div class="index-label-text" style="margin-top:50px;" >作品赏析</div>
             <div class="product-rec-part">
                 <div class="product-rec-list" style="background:#e7e7e7;padding:10px;">
                     <div class="list-scroll" :style="{height:scrollHeight}">
                         <ul :style="{width:scrollWidth,height:scrollHeight}">
-                           <li v-for="item in productList" :style="proStyle"><img :src="item.cover+'?imageView2/1/w/2000/h/1200/interlace/1'" :style="proImgStyle"/><div class="link" :style="{width:proStyle.width}">{{item.name}}</div></li>
-                       </ul>
-                   </div>
-               </div> 
+                         <li v-for="item in productList" :style="proStyle"><img :src="item.cover+'?imageView2/1/w/2000/h/1200/interlace/1'" :style="proImgStyle"/><div class="link" :style="{width:proStyle.width}">{{item.name}}</div></li>
+                     </ul>
+                 </div>
+             </div> 
 
-           </div>
-       </div>
-   </div>
+         </div>
+     </div>
+ </div>
 
-   <div :id="'anchor-'+2" class="index-cert">
+ <div :id="'anchor-'+2" class="index-cert">
     <div style="display:flex;flex-direction:column;width:70%;margin-left:15%;background-color:white;">
         <div class="index-label-text" style="margin-top:50px;">证书查询</div>
         <div class="cert-search-part">
             <input v-model="searchText" placeholder="证书编号" class="search-input" >
             <div  @click="searchCert" style="background-color:#ae0000;color:white;line-height:45px;padding-left:15px;padding-right:15px;font-size:18px;font-family: KaiTi,KaiTi_GB2312 ! important;font-weight:800;cursor:pointer;">
-             查询
-         </div>
-     </div>
- </div>
- <img src="../assets/img/syyj/index_temp.jpg" style="width:100%;height:auto;5">
+               查询
+           </div>
+       </div>
+   </div>
+   <img src="../assets/img/syyj/index_temp.jpg" style="width:100%;height:auto;5">
 </div>
 <div :id="'anchor-'+3" class="index-article">
     <div style="display:flex;flex-direction:column;width:70%;margin-left:15%;background-color:white;padding-bottom:50px;">
@@ -194,13 +194,13 @@
             <div class="article-item" v-for="item in articleList">
                 <img :src="item.cover+'?imageView2/1/w/1000/h/600/interlace/1'" >
                 <div style="font-size:16px;margin: 10px auto;line-height: 1;border-bottom: 1px dashed black;">
-                {{item.title}}</div>
-                <div style="padding-left:10px;padding-right:10px;padding-bottom:15px;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 3;overflow: hidden;height:70px;text-indent: 2em;">{{item.summary}}</div>
-            </div>
-        </div> 
+                    {{item.title}}</div>
+                    <div style="padding-left:10px;padding-right:10px;padding-bottom:15px;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 3;overflow: hidden;height:70px;text-indent: 2em;">{{item.summary}}</div>
+                </div>
+            </div> 
+        </div>
     </div>
-</div>
-<bottom></bottom>
+    <bottom></bottom>
 </template>
 
 <script>
@@ -216,7 +216,16 @@
             data() {
                 document.title = "天工艺品";
                 var tabIndex = this.$route.query.tab;
-                this.goAnchor("#anchor-"+tabIndex);
+                if (tabIndex ==4) {
+
+                }else if (tabIndex == 5) {
+                    this.$route.router.go({
+                        name: 'home'
+                    });
+                }else{
+                    this.goAnchor("#anchor-"+tabIndex);
+                }
+                
                 // this.goAnchor(".index-part");
             }
         },
@@ -241,9 +250,9 @@
 
         },
         beforeDestroy() {
-           clearInterval(this.prodIntval);
-       },
-       data() {
+         clearInterval(this.prodIntval);
+     },
+     data() {
         return {
             value: [20, 50],
             offset: 0,
@@ -372,8 +381,8 @@
                 })
             },
             getArticleList(){
-             var url = "http://47.94.206.22:3001/api/article/frontGetArticleList";
-             this.$http.post(url, {
+               var url = "http://47.94.206.22:3001/api/article/frontGetArticleList";
+               this.$http.post(url, {
                 page:1,
                 size:3
             }).then((result) => {

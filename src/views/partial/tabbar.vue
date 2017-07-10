@@ -2,10 +2,10 @@
     <div class="tabbar">
         <div style="width:70%;display:flex;flex-direction:row;margin-left:15%;margin-top:20px;">
             <div style="flex:1;">
-                <img class="tabbar-text" :class="{'text_selected':selected==1,'text_normal':selected!=1}" src="../../assets/img/syyj/top_master.png"  @click="tab1"/>
-                <img class="tabbar-text" style="margin-left:10px;" :class="{'text_selected':selected==2,'text_normal':selected!=2}" src="../../assets/img/syyj/top_product.png"  @click="tab2"/>
-                <img class="tabbar-text" style="margin-left:10px;" :class="{'text_selected':selected==3,'text_normal':selected!=3}" src="../../assets/img/syyj/top_cert.png"  @click="tab3"/>
-                <img class="tabbar-text" style="margin-left:10px;" :class="{'text_selected':selected==4,'text_normal':selected!=4}" src="../../assets/img/syyj/top_article.png"  @click="tab4"/>
+                <img class="tabbar-text" :class="{'text_selected':selected==4,'text_normal':selected!=4}" src="../../assets/img/syyj/top_master.png"  @click="tab4"/>
+                <img class="tabbar-text" style="margin-left:10px;" :class="{'text_selected':selected==1,'text_normal':selected!=1}" src="../../assets/img/syyj/top_product.png"  @click="tab1"/>
+                <img class="tabbar-text" style="margin-left:10px;" :class="{'text_selected':selected==2,'text_normal':selected!=2}" src="../../assets/img/syyj/top_cert.png"  @click="tab2"/>
+                <img class="tabbar-text" style="margin-left:10px;" :class="{'text_selected':selected==3,'text_normal':selected!=3}" src="../../assets/img/syyj/top_article.png"  @click="tab3"/>
             </div>
             <img style="height:36px;margin-top:22px;" src="../../assets/img/syyj/top_brand.png"  @click="tab5"/>
         </div>
