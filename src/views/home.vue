@@ -111,7 +111,15 @@
 .product-rec-part ul li:hover img{opacity: 0.8;filter: alpha(opacity=80);}
 .product-rec-part ul li div.link{ display:block; height:30px; line-height:30px; text-align:center;font-family: KaiTi,KaiTi_GB2312 ! important; color:#000; font-size:14px; z-index:20;}
 
-
+.article-item{
+    display: flex;
+    flex-direction: column;
+    font-family: KaiTi,KaiTi_GB2312 ! important;
+    color: black;
+    background-color: #efefef;
+}
+.article-item img{width: 100%;height: auto;}
+.article-item img:hover{opacity: 0.8;filter: alpha(opacity=80);}
 </style>
 <template>
     <!-- <Slider :value.sync="value" range></Slider> -->
@@ -180,10 +188,15 @@
  <img src="../assets/img/syyj/index_temp.jpg" style="width:100%;height:auto;5">
 </div>
 <div :id="'anchor-'+3" class="index-article">
-    <div style="display:flex;flex-direction:column;width:70%;margin-left:15%;background-color:white;">
+    <div style="display:flex;flex-direction:column;width:70%;margin-left:15%;background-color:white;padding-bottom:50px;">
         <div class="index-label-text" style="margin-top:50px;">玉雕文化</div>
-        <div class="product-rec-part">
-            <ul style="width:100%;"></ul>
+        <div class="product-rec-part" style="-moz-column-count:3;-webkit-column-count:3;column-count:3;-moz-column-gap:20px;-webkit-column-gap:20px;column-gap:20px;">
+            <div class="article-item" v-for="item in articleList">
+                <img :src="item.cover+'?imageView2/1/w/1000/h/600/interlace/1'" >
+                <div style="font-size:16px;margin: 10px auto;line-height: 1;border-bottom: 1px dashed black;">
+                {{item.title}}</div>
+                <div style="padding-left:10px;padding-right:10px;padding-bottom:15px;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 3;overflow: hidden;height:70px;text-indent: 2em;">{{item.summary}}</div>
+            </div>
         </div> 
     </div>
 </div>
@@ -346,7 +359,7 @@
             },
 
             getRecommendProductList() {
-                var url = "http://192.168.1.228:3001/api/product/frontGetProductList";
+                var url = "http://47.94.206.22:3001/api/product/frontGetProductList";
                 this.$http.post(url, {
                     page:1,
                     size:18,
@@ -359,12 +372,13 @@
                 })
             },
             getArticleList(){
-             var url = "http://192.168.1.228:3001/api/article/frontGetArticleList";
+             var url = "http://47.94.206.22:3001/api/article/frontGetArticleList";
              this.$http.post(url, {
                 page:1,
                 size:3
             }).then((result) => {
-                this.articleList = result.data;
+                log(result.data.array);
+                this.articleList = result.data.array;
             })
         },
         loadMore() {
