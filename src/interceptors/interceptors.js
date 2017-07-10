@@ -11,10 +11,10 @@ export default function ReqHandler(Vue) {
         let originBody = request.body
 
         request.body = "data=" + JSON.stringify(originBody);
-        var user = window.userinfo;
-        if (user && user.token) {
-            request.body += "&token=" + user.token;
-        }
+        // var user = window.userinfo;
+        // if (user && user.token) {
+        //     request.body += "&token=" + user.token;
+        // }
         request.headers['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
 
         next((resp) => {

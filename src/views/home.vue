@@ -1,162 +1,4 @@
 <style>
-    .home-preference-cover {
-        width: 100%;
-        height: auto;
-    }
-
-    .home-item-title {
-        display: flex;
-        flex-direction: row;
-    }
-
-    .home-item-stage {
-        position: absolute;
-        top: 0;
-        left: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 100%;
-    }
-
-    .home-item-stage div {
-        color: white;
-    }
-
-    .home-carousel {
-        display: -webkit-box;
-        overflow-x: scroll;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .home-carousel-item {
-        margin-right: 10px;
-        margin-left: 10px;
-        text-align: center;
-    }
-
-    .home-carousel::-webkit-scrollbar {
-        display: none
-    }
-
-    .home-item-carousel {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 270px;
-        height: 100px;
-    }
-
-    .category-preference-item {
-        background-color: white;
-        width: 100%;
-        margin-bottom: 10px;
-        margin: 0px;
-        /*height: 100px;*/
-    }
-
-    .div-float-left {
-        float: left;
-        /*background-color: green;*/
-        margin-left: 3%;
-        /*margin-right: 0.5%;*/
-        margin-bottom: 3%;
-    }
-
-    .div-float-right {
-        float: right;
-        /*background-color: purple;*/
-        /*margin-left: 0.5%;*/
-        margin-right: 3%;
-        margin-bottom: 3%;
-    }
-
-    .slide-box {
-        display: -webkit-box;
-        overflow-x: scroll;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .slide-item {
-        margin-right: 10px;
-        text-align: center;
-    }
-
-    .slide-box::-webkit-scrollbar {
-        display: none
-    }
-
-    .section-header {
-        width: 100%;
-        text-align: center;
-        font-size: 1.5em;
-        color: #2F2F2F;
-        line-height: 1.5em;
-        margin-top: 10px;
-        display: flex;
-        flex-direction: row;
-        align-content: space-around;
-        justify-content: space-around;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-
-    .brand-product-logo {
-        width: 75px;
-        height: 75px;
-        margin: 15px;
-    }
-
-    .brandName {
-        width: 100%;
-        text-align: left;
-        color: rgb(47, 47, 47);
-        font-size: 15px;
-    }
-
-    .address_num {
-        width: 100%;
-        text-align: left;
-        color: rgb(100, 100, 100);
-        font-size: 13px;
-    }
-
-    .brand-product-desc {
-        color: gray;
-        font-size: 13px;
-        margin-left: 15px;
-        margin-right: 15px;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        /*padding: 10px;*/
-    }
-
-    .brand-product-parent {
-        align-items: center;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-
-    .brand-product-row {
-        height: 33%;
-        display: flex;
-    }
-
-    .brand-product-item {
-        width: 33%;
-        margin-left: 15px;
-        margin-right: 15px;
-    }
-
-    .brand-product-lot {
-        width: 100%;
-        height: 100%;
-    }
-
-
     .slide-fade-enter-active {
       transition: all .3s ease;
   }
@@ -178,6 +20,17 @@
     background: url('../assets/img/syyj/bg2.jpg');
     margin-top: -5px;
 }
+.index-cert{
+    width: 100%;
+    height: auto;
+    background: url('../assets/img/syyj/bg3.jpg');
+    margin-bottom: -5px;
+}
+.index-article{
+    width: 100%;
+    height: auto;
+    background: url('../assets/img/syyj/bg4.jpg');
+}
 .verticle-line{
     width:2px;
     height:70px;
@@ -196,11 +49,23 @@
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
 }
+.cert-search-part{
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+    flex: 1;
+    border: 4px solid #ae0000;
+    border-radius: 5px;
+    width: 500px;
+    margin: 30px auto;
+}
 .search-input{
     flex: 1;
     padding-left: 20px;
     padding-right: 20px;
     line-height: 40px;
+    outline:none;
+    border:none;
 }
 .search-btn{
     text-align: center;
@@ -209,6 +74,7 @@
     background-color: black;
     padding-left: 12px;
     padding-right: 10px;
+    cursor:pointer;
 }
 .contact-part{
     display: flex;
@@ -227,6 +93,25 @@
     border-bottom: 2px dashed black;
     line-height: 1;
 }
+.product-rec-part{
+    margin-top: 25px;
+    padding-left:80px;
+    padding-right:80px;
+    height:auto; 
+    overflow:hidden; 
+}
+.product-rec-list{
+    
+}
+.product-rec-part .list-scroll{ width:100%;overflow:hidden; position:relative;}
+.product-rec-part .list-scroll ul{ position:absolute; left:0; top:0; overflow:hidden;}
+.product-rec-part ul{ overflow:hidden;}
+.product-rec-part ul li{ margin-right:10px; margin-bottom:10px; overflow:hidden; position:relative; float:left;background-color: white;padding: 5px;}
+.product-rec-part ul li img{ left:0; top:0; z-index:10; }
+.product-rec-part ul li:hover img{opacity: 0.8;filter: alpha(opacity=80);}
+.product-rec-part ul li div.link{ display:block; height:30px; line-height:30px; text-align:center;font-family: KaiTi,KaiTi_GB2312 ! important; color:#000; font-size:14px; z-index:20;}
+
+
 </style>
 <template>
     <!-- <Slider :value.sync="value" range></Slider> -->
@@ -268,20 +153,39 @@
                 </div>
             </div>
             <div style="width:100%;height:2px;background-color:#e7e7e7;"></div>
-            <div class="index-label-text" style="margin-top:30px;">作品赏析</div>
-            <transition-group name="slide-fade">
+            <div class="index-label-text" style="margin-top:50px;">作品赏析</div>
+            <div class="product-rec-part">
+                <div class="product-rec-list" style="background:#e7e7e7;padding:10px;">
+                    <div class="list-scroll" :style="{height:scrollHeight}">
+                        <ul :style="{width:scrollWidth,height:scrollHeight}">
+                         <li v-for="item in productList" :style="proStyle"><img :src="item.cover+'?imageView2/1/w/2000/h/1200/interlace/1'" :style="proImgStyle"/><div class="link" :style="{width:proStyle.width}">{{item.name}}</div></li>
+                     </ul>
+                 </div>
+             </div> 
 
-            </transition-group>
-        </div>
+         </div>
+     </div>
+ </div>
+
+ <div :id="'anchor-'+2" class="index-cert">
+    <div style="display:flex;flex-direction:column;width:70%;margin-left:15%;background-color:white;">
+        <div class="index-label-text" style="margin-top:50px;">证书查询</div>
+        <div class="cert-search-part">
+            <input v-model="searchText" placeholder="证书编号" class="search-input" >
+            <div  @click="searchCert" style="background-color:#ae0000;color:white;line-height:45px;padding-left:15px;padding-right:15px;font-size:18px;font-family: KaiTi,KaiTi_GB2312 ! important;font-weight:800;cursor:pointer;">
+               查询
+           </div>
+       </div>
+   </div>
+   <img src="../assets/img/syyj/index_temp.jpg" style="width:100%;height:auto;5">
+</div>
+<div :id="'anchor-'+3" class="index-article">
+    <div style="display:flex;flex-direction:column;width:70%;margin-left:15%;background-color:white;">
+        <div class="index-label-text" style="margin-top:50px;">玉雕文化</div>
+
     </div>
-    
-    <!-- <button  @click="animbtn">anim</button> -->
-    <transition-group name="slide-fade">
-        <div :id="'anchor-'+2" class="index-part" v-for="item in mainData" style="background-color:white;">
-
-        </div>
-    </transition-group>
-    <bottom></bottom>
+</div>
+<bottom></bottom>
 </template>
 
 <script>
@@ -315,39 +219,47 @@
                 back: false
             }]);
             this.screenWidth = window.innerWidth / 2 - 12 + 'px';
-            this.getServiceRule();
             this.getAdvList();
-            this.getTabs();
-            this.getRecommendList();
+            this.getRecommendProductList();
+            this.scrollNum = 0;
 
         },
-        data() {
-            return {
-                value: [20, 50],
-                offset: 0,
-                max: 10,
-                singleTabPosition: 0,
-                banners: [],
-                singleTabs: [],
-                temp: [],
-                mainData: [],
+        beforeDestroy() {
+         clearInterval(this.prodIntval);
+     },
+     data() {
+        return {
+            value: [20, 50],
+            offset: 0,
+            max: 10,
+            productList: [],
 
-                preference: [],
-                master: [],
-                list: [],
-                goods: [],
-                serviceRule: '',
-                advlist: [],
-                screenWidth: '',
-                firstAdv: {
-                    width: window.screen.availWidth / 2 + 'px',
-                    height: window.screen.availWidth / 2 * 1.288 + 'px'
-                },
-                secondAdv: {
-                    width: window.screen.availWidth + 'px',
-                    height: window.screen.availWidth * 760 / 1920 + 'px'
-                },
-                swiperOption: {
+            preference: [],
+            master: [],
+            list: [],
+            goods: [],
+            serviceRule: '',
+            advlist: [],
+            screenWidth: '',
+            firstAdv: {
+                width: document.body.clientWidth / 2 + 'px',
+                height: document.body.clientWidth / 2 * 1.288 + 'px'
+            },
+            secondAdv: {
+                width: document.body.clientWidth + 'px',
+                height: document.body.clientWidth * 760 / 1920 + 'px'
+            },
+            proStyle:{
+                width: (document.body.clientWidth*0.7-213)/3 + 'px',
+                height: (document.body.clientWidth*0.7-213)/5+40 + 'px'     
+            },
+            proImgStyle:{
+                width: (document.body.clientWidth*0.7-213)/3-10 + 'px',
+                height: ((document.body.clientWidth*0.7-213)/3-10)*3/5 + 'px'     
+            },
+            scrollHeight: (document.body.clientWidth*0.7-210)/5*2+90 +'px',
+            scrollWidth: (document.body.clientWidth*0.7-210)*3+90 + 'px',
+            swiperOption: {
                     // 所有配置均为可选（同Swiper配置）  
                     notNextTick: true,
                     autoplay: 5000,
@@ -362,123 +274,99 @@
                     mousewheelControl : false,
                     observeParents:true,
                     onTransitionStart(swiper){
-                      // console.log(swiper)
-                  }
-              }
-          }
-      },
-
-      methods: {
-        animbtn(){
-            console.log("====");
-            this.getRecommendList();
+                    }
+                },
+                scrollNum:0,
+                prodIntval:''
+            }
         },
-        change(page){
-            console.log(page);
-        },
-        goAnchor(selector) {
-            // var anchor = $.$el.querySelector(selector);
-            var anchor = $(selector);
-            if (anchor[0]) {
-                var total = anchor[0].offsetTop-50;
-                $('html body').animate({scrollTop: total}, 500)
 
-            // // Chrome
-            // document.body.scrollTop = total;
-            // // Firefox
-            // document.documentElement.scrollTop = total;
-            // // Safari
-            // window.pageYOffset = total;
-        }else{
-            setTimeout(function(){
+        methods: {
+            intval(){
+                this.prodIntval =setInterval(this.autoscroll,5000);
+            },
+            change(page){
+                console.log(page);
+            },
+            goAnchor(selector) {
+
                 var anchor = $(selector);
                 if (anchor[0]) {
                     var total = anchor[0].offsetTop-50;
                     $('html body').animate({scrollTop: total}, 500)
+
+                }else{
+                    setTimeout(function(){
+                        var anchor = $(selector);
+                        if (anchor[0]) {
+                            var total = anchor[0].offsetTop-50;
+                            $('html body').animate({scrollTop: total}, 500)
+                        }
+                    },500);
                 }
-            },500);
-        }
 
-    },
-    getTabs() {
-        this.$http.post('', {
-            act: 'recommend_getLabelList',
-            group: 'recommend'
-        }).then((result) => {
-            var resp = result.data;
-            if (result && resp.code == 200) {
-                this.singleTabs = result.data.datalist;
-            }
-        })
-    },
+            },
+            autoscroll() {
 
-    getServiceRule() {
-        this.$http.post('', {
-            act: 'configure_getListByType'
-        }).then((result) => {
-            var resp = result.data;
-            if (result && result.data && result.data.code == 200) {
-                this.serviceRule = result.data.data.img;
-            }
-        })
-    },
-    getAdvList() {
-        // this.$http.post('', {
-        //     act: 'configure_getListByType',
-        //     type: 'webpage'
-        // }).then((result) => {
-        //     var resp = result.data;
-        //     log(resp);
-        //     if (result && result.data && result.data.code == 200) {
-        //         this.advlist = result.data.datalist;
-        //     }
-        // })
+                var $w = $('.list-scroll li').width() + 20;
+                this.scrollNum++;
+                if (this.scrollNum == 3) {
+                    this.scrollNum = 0;
+                }
+                var distance = -3 * $w * this.scrollNum;
+                $('.list-scroll ul').stop().animate({left: distance});
+            },
 
-        var url = "http://47.94.206.22:3001/api/banner/getBannerList";
-        this.$http.get(
-            url
-            )
-        .then((res) => {
-            if (res.status == 200) {
-                this.advlist = res.data;
-            };
-        })
-        .catch((res) => {
-            log("error:" + JSON.stringify(res));
-        });
-    },
-    goSingleTabPosition(position) {
-        this.offset = 0;
-        this.singleTabPosition = position;
+            getServiceRule() {
+                this.$http.post('', {
+                    act: 'configure_getListByType'
+                }).then((result) => {
+                    var resp = result.data;
+                    if (result && result.data && result.data.code == 200) {
+                        this.serviceRule = result.data.data.img;
+                    }
+                })
+            },
+            getAdvList() {
+                var url = "http://47.94.206.22:3001/api/banner/getBannerList";
+                this.$http.get(
+                    url
+                    )
+                .then((res) => {
+                    if (res.status == 200) {
+                        this.advlist = res.data;
+                    };
+                })
+                .catch((res) => {
+                    log("error:" + JSON.stringify(res));
+                });
+            },
 
-        if (this.goSingleTabPosition == 0) {
-            this.getRecommendList();
-        } else {
-            this.preference = [],
-            this.banners = [],
-            this.master = [],
-            this.list = [],
-            this.goods = [],
-            this.recommend_getListByLabelId();
-        }
-
-        this.loadMore();
-    },
-    getRecommendList() {
-        this.$http.post('', {
-            act: 'recommend_getComList',
-            offset: this.offset,
-            max: this.max,
-            group: "recommend"
+            getRecommendProductList() {
+        // var url = "http://47.94.206.22:3001/api/product/frontGetProductList";
+        var url = "http://192.168.1.228:3001/api/product/frontGetProductList";
+        this.$http.post(url, {
+            page:1,
+            size:18,
+            name:''
         }).then((result) => {
 
-            if (result.data.code == 229) {
-                this.temp = [];
-                this.$broadcast('$InfiniteLoading:noMore');
-            } else {
-                this.mainData = result.data.datalist;
-            }
-        })
+            this.productList = result.data;
+
+            var that = this;
+            // var scrollChange = setInterval(that.autoscroll(), 5000);
+            this.intval();
+                //鼠标悬停，暂停滚动
+                // $(".list-scroll ul").mouseover(function () {
+                //     $('.list-scroll ul').stop()
+                //     clearInterval(that.prodIntval);
+                // });
+                // 鼠标移走，滚动继续
+                // $('.list-scroll ul').mouseout(function () {
+                //     // scrollChange = setInterval(that.autoscroll(), 5000);
+                //     that.intval();
+                // });
+            })
     },
     loadMore() {
         if (this.singleTabPosition == 0) {
