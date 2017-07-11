@@ -166,7 +166,7 @@
                 <div class="product-rec-list" style="background:#e7e7e7;padding:10px;">
                     <div class="list-scroll" :style="{height:scrollHeight}">
                         <ul :style="{width:scrollWidth,height:scrollHeight}">
-                         <li v-for="item in productList" :style="proStyle"><img :src="item.cover+'?imageView2/1/w/2000/h/1200/interlace/1'" :style="proImgStyle"/><div class="link" :style="{width:proStyle.width}">{{item.name}}</div></li>
+                         <li v-for="item in productList" :style="proStyle" @click="goGood(item)"><img :src="item.cover+'?imageView2/1/w/2000/h/1200/interlace/1'" :style="proImgStyle"/><div class="link" :style="{width:proStyle.width}">{{item.name}}</div></li>
                      </ul>
                  </div>
              </div> 
@@ -195,7 +195,7 @@
                 <img :src="item.cover+'?imageView2/1/w/1000/h/600/interlace/1'" >
                 <div style="font-size:16px;margin: 10px auto;line-height: 1;border-bottom: 1px dashed black;">
                     {{item.title}}</div>
-                    <div style="padding-left:10px;padding-right:10px;padding-bottom:15px;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 3;overflow: hidden;height:70px;text-indent: 2em;">{{item.summary}}</div>
+                    <div style="padding-left:10px;padding-right:10px;padding-bottom:15px;height:70px;text-indent: 2em;word-break: break-all;display: -webkit-box;-webkit-line-clamp: 3; -webkit-box-orient: vertical;line-height:20px;">{{item.summary}}</div>
                 </div>
             </div> 
         </div>
@@ -219,9 +219,11 @@
                 if (tabIndex ==4) {
 
                 }else if (tabIndex == 5) {
-                    this.$route.router.go({
-                        name: 'home'
-                    });
+                    // this.$route.router.go({
+                    //     name: 'home'
+                    // });
+                    // this.$route.router.go(0)
+                    this.getRecommendProductList();
                 }else{
                     this.goAnchor("#anchor-"+tabIndex);
                 }
@@ -267,23 +269,23 @@
             advlist: [],
             screenWidth: '',
             firstAdv: {
-                width: document.body.clientWidth / 2 + 'px',
-                height: document.body.clientWidth / 2 * 1.288 + 'px'
+                width: window.screen.availWidth / 2 + 'px',
+                height: window.screen.availWidth / 2 * 1.288 + 'px'
             },
             secondAdv: {
-                width: document.body.clientWidth + 'px',
-                height: document.body.clientWidth * 760 / 1920 + 'px'
+                width: window.screen.availWidth + 'px',
+                height: window.screen.availWidth * 760 / 1920 + 'px'
             },
             proStyle:{
-                width: (document.body.clientWidth*0.7-213)/3 + 'px',
-                height: (document.body.clientWidth*0.7-213)/5+40 + 'px'     
+                width: (window.screen.availWidth*0.7-213)/3 + 'px',
+                height: (window.screen.availWidth*0.7-213)/5+40 + 'px'     
             },
             proImgStyle:{
-                width: (document.body.clientWidth*0.7-213)/3-10 + 'px',
-                height: ((document.body.clientWidth*0.7-213)/3-10)*3/5 + 'px'     
+                width: (window.screen.availWidth*0.7-213)/3-10 + 'px',
+                height: ((window.screen.availWidth*0.7-213)/3-10)*3/5 + 'px'     
             },
-            scrollHeight: (document.body.clientWidth*0.7-210)/5*2+90 +'px',
-            scrollWidth: (document.body.clientWidth*0.7-210)*3+90 + 'px',
+            scrollHeight: (window.screen.availWidth*0.7-213)/5*2+90 +'px',
+            scrollWidth: (window.screen.availWidth*0.7-213)*3+90 + 'px',
             swiperOption: {
                     // 所有配置均为可选（同Swiper配置）  
                     notNextTick: true,

@@ -7,7 +7,7 @@
                 <img class="tabbar-text" style="margin-left:10px;" :class="{'text_selected':selected==2,'text_normal':selected!=2}" src="../../assets/img/syyj/top_cert.png"  @click="tab2"/>
                 <img class="tabbar-text" style="margin-left:10px;" :class="{'text_selected':selected==3,'text_normal':selected!=3}" src="../../assets/img/syyj/top_article.png"  @click="tab3"/>
             </div>
-            <img style="height:36px;margin-top:22px;" src="../../assets/img/syyj/top_brand.png"  @click="tab5"/>
+            <img style="height:36px;margin-top:22px;cursor:pointer;" src="../../assets/img/syyj/top_brand.png"  @click="tab5"/>
         </div>
     </div>
 
@@ -62,9 +62,7 @@
             tab5() {
                 this.$route.router.go({
                     name: 'home',
-                    query: {
-                        tab:5
-                    },
+                   
                     
                 });
             }
@@ -91,6 +89,7 @@
         height: 80px;
         text-align: center;
         font-size: 1.2em !important;
+        cursor: pointer;
     }
 
     .text_normal {

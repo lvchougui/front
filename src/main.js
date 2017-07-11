@@ -6,6 +6,7 @@ import $ from 'jquery'
 import config from './appConfig'
 import iview from 'iview/dist/iview.min'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
+import qrcode from './lib/jquery.qrcode.min.js';
 
 Vue.use(VueAwesomeSwiper)
 Vue.use(iview)
