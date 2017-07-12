@@ -2,10 +2,17 @@
     <tabbar></tabbar>
     
     <div class="content-bg">
-        <div style="font-size:28px;color:black;text-align:center;font-family: KaiTi,KaiTi_GB2312 ! important;font-weight:900;margin: 0 auto;" >作品信息</div>
+        <div style="font-size:28px;color:black;text-align:center;font-family: KaiTi,KaiTi_GB2312 ! important;font-weight:900;margin: 0 auto;" >证书查询</div>
         <div style="height:3px;background-color:#272727;margin-left:15%;margin-right:15%;margin-top:10px;" ></div>
         <div class="content">
-            <div class="product-info">
+            <div class="cert-search-part">
+                <input v-model="searchText" placeholder="证书编号" class="search-input" >
+                <div  @click="searchCert" style="background-color:#ae0000;color:white;line-height:45px;padding-left:15px;padding-right:15px;font-size:18px;font-family: KaiTi,KaiTi_GB2312 ! important;font-weight:800;cursor:pointer;">查询</div>
+            </div>
+            <img src="" style="margin-left:200px;margin-right:200px;width:100%;">
+            <div style="font-size:26px;color:black;text-align:center;margin: 20px auto;font-weight:700;">作品信息</div>
+            <div style="height:2px;background-color:#272727;" ></div>
+            <div class="product-info" style="margin-top:20px;">
                 <img :src="detail.cover+'?imageView2/1/w/1000/h/1000/interlace/1'" :style="imgStyle" >
                 <div class="info-detail" :style="height:imgStyle.height">
                     <div style="width:100%;text-align:center;font-size:24px;font-family:KaiTi,KaiTi_GB2312 ! important;font-weight:600;color:black;margin-top:10px;border-bottom:1px dashed #000;">{{detail.name}}</div>
@@ -17,13 +24,13 @@
                     <img src="../../assets/img/syyj/jieyuan.png" style="width:110px;position:absolute;right:20px;bottom:20px;transform:rotate(30deg)" v-if="item.is_sold">
                 </div>
             </div>
-             <div style="height:2px;background-color:#272727;margin-top:20px;" ></div>
-             <div class="product-info-desc" style="margin-top: 20px;">{{{detail.detail}}}</div>
-         </div>
+            <div style="height:2px;background-color:#272727;margin-top:20px;" ></div>
+            <div class="product-info-desc" style="margin-top: 20px;">{{{detail.detail}}}</div>
+        </div>
     </div>
-    
+
     <bottom></bottom>
-    
+
 </template>
 <style>
     .product-cover {
@@ -68,6 +75,33 @@
         height: auto;
         margin-top: 5px;
     }
+    .cert-search-part{
+        display: flex;
+        flex-direction: row;
+        height: 50px;
+        flex: 1;
+        border: 4px solid #ae0000;
+        border-radius: 5px;
+        width: 500px;
+        margin: 30px auto;
+    }
+    .search-input{
+        flex: 1;
+        padding-left: 20px;
+        padding-right: 20px;
+        line-height: 40px;
+        outline:none;
+        border:none;
+    }
+    .search-btn{
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        background-color: black;
+        padding-left: 12px;
+        padding-right: 10px;
+        cursor:pointer;
+    }
 </style>
 <script>
     import Loading from 'vux/dist/components/loading'
@@ -95,19 +129,18 @@
         },
         mounted: function () {
           this.$nextTick(function () {
-                
-                this.qrcode();
-          })
+            this.qrcode();
+        })
       },
       methods: {
 
-            qrcode:function () {
-                $("#qrcode").qrcode({
-                    text: window.location.href,
-                    width:100,
-                    height:100
-                });
-           },
+        qrcode:function () {
+            $("#qrcode").qrcode({
+                text: window.location.href,
+                width:100,
+                height:100
+            });
+        },
         //得到默认的数据
         getDefaultData: function() {
             var url = "http://47.94.206.22:3001/api/product/getProductDetail/"+this.id;
