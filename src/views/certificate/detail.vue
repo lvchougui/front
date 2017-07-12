@@ -6,16 +6,16 @@
         <div style="height:3px;background-color:#272727;margin-left:15%;margin-right:15%;margin-top:10px;" ></div>
         <div class="content">
             <div class="cert-search-part">
-                <input v-model="searchText" placeholder="证书编号" class="search-input" >
-                <div  @click="searchCert" style="background-color:#ae0000;color:white;line-height:45px;padding-left:15px;padding-right:15px;font-size:18px;font-family: KaiTi,KaiTi_GB2312 ! important;font-weight:800;cursor:pointer;">查询</div>
+                <input v-model="certCode" placeholder="证书编号" class="search-input" >
+                <div  @click="getDefaultData" style="background-color:#ae0000;color:white;line-height:45px;padding-left:15px;padding-right:15px;font-size:18px;font-family: KaiTi,KaiTi_GB2312 ! important;font-weight:800;cursor:pointer;">查询</div>
             </div>
-            <img src="" style="margin-left:200px;margin-right:200px;width:100%;">
-            <div style="font-size:26px;color:black;text-align:center;margin: 20px auto;font-weight:700;">作品信息</div>
+            <img :src="detail.c_cover" style="margin:0 auto;max-width:1000px;margin-bottom:30px;">
+            <div style="font-size:24px;color:black;text-align:center;margin: 20px auto;font-weight:700;font-family:KaiTi,KaiTi_GB2312 ! important;">作品信息</div>
             <div style="height:2px;background-color:#272727;" ></div>
             <div class="product-info" style="margin-top:20px;">
                 <img :src="detail.cover+'?imageView2/1/w/1000/h/1000/interlace/1'" :style="imgStyle" >
                 <div class="info-detail" :style="height:imgStyle.height">
-                    <div style="width:100%;text-align:center;font-size:24px;font-family:KaiTi,KaiTi_GB2312 ! important;font-weight:600;color:black;margin-top:10px;border-bottom:1px dashed #000;">{{detail.name}}</div>
+                    <div style="width:100%;text-align:center;font-size:22px;font-family:KaiTi,KaiTi_GB2312 ! important;font-weight:600;color:black;margin-top:10px;border-bottom:1px dashed #000;">{{detail.name}}</div>
                     <div style="margin-top:20px;">作品材质：{{detail.p_material}}</div>
                     <div style="margin-top:5px;">作品尺寸：{{detail.p_size}}</div>
                     <div style="margin-top:5px;">作品重量：{{detail.p_weight}}</div>
@@ -114,12 +114,12 @@
             bottom
         },
         ready: function() {
-            this.id = this.$route.params.id;
+            this.certCode = this.$route.params.certCode;
             this.getDefaultData();
         },
         data: function() {
             return {
-                id: '',
+                certCode: '',
                 detail: {},
                 imgStyle:{
                     width: (document.body.clientWidth*0.7-120)/2 + 'px',
@@ -143,16 +143,26 @@
         },
         //得到默认的数据
         getDefaultData: function() {
-            var url = "http://47.94.206.22:3001/api/product/getProductDetail/"+this.id;
+            if (!this.certCode) {
+                alert("请输入证书编码");
+                return;
+            }
+            var url = "http://localhost:3001/api/cert/getFrontCertDetail/"+this.certCode;
             this.$http.get(
                 url
                 )
             .then((res) => {
-                log(res)
                 if (res.status == 200) {
-                    this.detail = res.data;
-                    this.qrcode();
-                };
+                        if (res.data) {
+                            this.detail = res.data;
+                            this.qrcode();
+                             $(window).scrollTop(0);
+                        }else{
+                            alert("未查找到该证书的信息");
+                        }
+                    }else{
+                        alert("未查找到该证书的信息");
+                    }
             })
             .catch((res) => {
                 log("error:" + JSON.stringify(res));

@@ -8,6 +8,8 @@ import HomeComponent from './views/home';
 const MallDetailComponent = resolve => require(['./views/mall/detail'], resolve);
 //证书详情
 const CertDetailComponent = resolve => require(['./views/certificate/detail'], resolve);
+//玉雕文化详情
+const ArticleDetailComponent = resolve => require(['./views/article/detail'], resolve);
 
 export default function routeConfig(router) {
     router.map({
@@ -29,11 +31,15 @@ export default function routeConfig(router) {
             component: MallDetailComponent
         },
         //证书详情
-        '/certy/detail/:id': {
+        '/cert/detail/:certCode': {
             name: 'certDetail_item',
             component: CertDetailComponent
         },
-        
+        //玉雕文化详情
+        '/article/detail/:id': {
+            name: 'articleDetail_item',
+            component: ArticleDetailComponent
+        },
     });
 
 router.redirect({

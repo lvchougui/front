@@ -146,8 +146,8 @@
                 <div class="verticle-line"></div>
                 <div class="search-part">
                     <div style="color:black;line-height:36px;padding-right:20px;padding-left:20px;background-color:#c7c7c7;">商品</div>
-                    <input v-model="searchText" placeholder="题材、样式" class="search-input">
-                    <div class="search-btn" @click="search">
+                    <input v-model="searchProductText" placeholder="题材、样式" class="search-input">
+                    <div class="search-btn" @click="searchProduct">
                         <img src="../assets/img/syyj/search.png" style="width:20px;height:20px;margin-top:8px;">
                     </div>
                 </div>
@@ -166,7 +166,12 @@
                 <div class="product-rec-list" style="background:#e7e7e7;padding:10px;">
                     <div class="list-scroll" :style="{height:scrollHeight}">
                         <ul :style="{width:scrollWidth,height:scrollHeight}">
-                         <li v-for="item in productList" :style="proStyle" @click="goGood(item)"><img :src="item.cover+'?imageView2/1/w/2000/h/1200/interlace/1'" :style="proImgStyle"/><div class="link" :style="{width:proStyle.width}">{{item.name}}</div></li>
+                         <li v-for="item in productList" :style="proStyle" @click="goGood(item)">
+                             <img :src="item.cover+'?imageView2/1/w/2000/h/1200/interlace/1'" :style="proImgStyle"/>
+                             <div class="link" :style="{width:proStyle.width}" v-if="$index%2>0">偶--{{item.name}}</div>
+                             <div class="link" :style="{width:proStyle.width}" v-else>奇--{{item.name}}</div>
+                         </li>
+
                      </ul>
                  </div>
              </div> 
@@ -179,7 +184,7 @@
     <div style="display:flex;flex-direction:column;width:70%;margin-left:15%;background-color:white;">
         <div class="index-label-text" style="margin-top:50px;">证书查询</div>
         <div class="cert-search-part">
-            <input v-model="searchText" placeholder="证书编号" class="search-input" >
+            <input v-model="searchCertText" placeholder="证书编号" class="search-input" >
             <div  @click="searchCert" style="background-color:#ae0000;color:white;line-height:45px;padding-left:15px;padding-right:15px;font-size:18px;font-family: KaiTi,KaiTi_GB2312 ! important;font-weight:800;cursor:pointer;">
                查询
            </div>
@@ -191,7 +196,7 @@
     <div style="display:flex;flex-direction:column;width:70%;margin-left:15%;background-color:white;padding-bottom:50px;">
         <div class="index-label-text" style="margin-top:50px;">玉雕文化</div>
         <div class="product-rec-part" style="-moz-column-count:3;-webkit-column-count:3;column-count:3;-moz-column-gap:20px;-webkit-column-gap:20px;column-gap:20px;">
-            <div class="article-item" v-for="item in articleList">
+            <div class="article-item" v-for="item in articleList" @click="goArticle(item)">
                 <img :src="item.cover+'?imageView2/1/w/1000/h/600/interlace/1'" >
                 <div style="font-size:16px;margin: 10px auto;line-height: 1;border-bottom: 1px dashed black;">
                     {{item.title}}</div>
@@ -219,16 +224,10 @@
                 if (tabIndex ==4) {
 
                 }else if (tabIndex == 5) {
-                    // this.$route.router.go({
-                    //     name: 'home'
-                    // });
-                    // this.$route.router.go(0)
                     this.getRecommendProductList();
                 }else{
                     this.goAnchor("#anchor-"+tabIndex);
                 }
-                
-                // this.goAnchor(".index-part");
             }
         },
         components: {
@@ -256,7 +255,6 @@
      },
      data() {
         return {
-            value: [20, 50],
             offset: 0,
             max: 10,
             productList: [],
@@ -304,10 +302,11 @@
                     }
                 },
                 scrollNum:0,
-                prodIntval:''
+                prodIntval:'',
+                searchProductText: '',
+                searchCertText: ''
             }
         },
-
         methods: {
             intval(){
                 this.prodIntval =setInterval(this.autoscroll,5000);
@@ -392,72 +391,43 @@
                 this.articleList = result.data.array;
             })
         },
-        loadMore() {
-            if (this.singleTabPosition == 0) {
-                setTimeout(function() {
-                    this.offset = this.offset + this.max;
-                    this.$http.post('', {
-                        act: 'recommend_getComList',
-                        offset: this.offset,
-                        max: this.max,
-                        group: "recommend"
-                    }).then((result) => {
-                        if (result.data.code == 229) {
-                            this.temp = [];
-                            this.$broadcast('$InfiniteLoading:noMore');
-                        } else {
-                            this.temp = result.data.datalist;
+        searchCert(){
+            if (!this.searchCertText) {
+                alert("请输入证书编码");
+                return;
+            }else{
+                var url = "http://localhost:3001/api/cert/getFrontCertDetail/"+this.searchCertText;
+                this.$http.get(
+                    url
+                    )
+                .then((res) => {
+                    log(res);
+                    if (res.status == 200) {
+                        if (res.data) {
+                            this.$route.router.go({
+                                name: 'certDetail_item',
+                                params: {
+                                    certCode: this.searchCertText
+                                }
+                            });
+                        }else{
+                            alert("未查找到该证书的信息");
                         }
-                    })
-                    this.mainData = this.mainData.concat(this.temp);
-                    this.$broadcast('$InfiniteLoading:loaded');
-                }.bind(this), 1000);
-            } else {
-                //TODO 分页加载
-                setTimeout(function() {
-
-                    this.$http.post('', {
-                        act: 'preferenceGood_getSkuList',
-                        group: 'preference',
-                        labelId: this.singleTabPosition,
-                        offset: this.offset,
-                        max: this.max
-                    }).then((result) => {
-                        // log(result)
-                        if (result && result.data && result.data.code == 200) {
-                            var temp = result.data.datalist;
-                            this.goods = this.goods.concat(temp);
-                        } else {
-                            this.$broadcast('$InfiniteLoading:noMore');
-                        }
-                    });
-                    this.$broadcast('$InfiniteLoading:loaded');
-                    this.offset = this.offset + this.max;
-                }.bind(this), 1000);
+                    }else{
+                        alert("未查找到该证书的信息");
+                    }
+                })
+                .catch((res) => {
+                    log("error:" + JSON.stringify(res));
+                });
             }
         },
-        recommend_getListByLabelId: function() {
-            this.$http.post('', {
-                act: 'recommend_getListByLabelId',
-                group: 'recommend',
-                labelId: this.singleTabPosition
-            }).then((result) => {
-                if (result.data.code == 200) {
-                    // log(JSON.stringify(result));
-                    var dict = result.data.data;
-                    if (dict.preference != undefined) {
-                        this.preference = [dict.preference];
-                    };
-
-                    this.banners = dict.banners;
-
-                    if (dict.master != undefined) {
-                        this.master = [dict.master];
-                    };
-
-                    this.list = dict.list;
-                };
-
+        goArticle(item){
+            this.$route.router.go({
+                name: 'articleDetail_item',
+                params: {
+                    id: item.id
+                }
             });
         },
         goPage(item) {

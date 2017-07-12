@@ -41,8 +41,11 @@ ReqHandler(Vue);
 import routerInit from './routers'
 const router = new VueRouter({
 	history: true,
-	saveScrollPosition: true
-})
+	saveScrollPosition: false
+});
+router.afterEach((to, from, next) => {
+    window.scrollTo(0, 0);
+});
 routerInit(router)
 
 router.start(Vue.extend(App), '#app')
