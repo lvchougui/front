@@ -10,6 +10,8 @@ const MallDetailComponent = resolve => require(['./views/mall/detail'], resolve)
 const CertDetailComponent = resolve => require(['./views/certificate/detail'], resolve);
 //玉雕文化详情
 const ArticleDetailComponent = resolve => require(['./views/article/detail'], resolve);
+//玉雕文化列表
+const ArticleListComponent = resolve => require(['./views/article/list'], resolve);
 
 export default function routeConfig(router) {
     router.map({
@@ -39,6 +41,11 @@ export default function routeConfig(router) {
         '/article/detail/:id': {
             name: 'articleDetail_item',
             component: ArticleDetailComponent
+        },
+        //玉雕文化列表
+        '/article/list': {
+            name: 'articleList_item',
+            component: ArticleListComponent
         },
     });
 

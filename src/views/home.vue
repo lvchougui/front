@@ -166,35 +166,35 @@
                 <div class="product-rec-list" style="background:#e7e7e7;padding:10px;">
                     <div class="list-scroll" :style="{height:scrollHeight}">
                         <ul :style="{width:scrollWidth,height:scrollHeight}">
-                         <li v-for="item in productList" :style="proStyle" @click="goGood(item)">
-                             <img :src="item.cover+'?imageView2/1/w/2000/h/1200/interlace/1'" :style="proImgStyle"/>
-                             <div class="link" :style="{width:proStyle.width}" v-if="$index%2>0">偶--{{item.name}}</div>
-                             <div class="link" :style="{width:proStyle.width}" v-else>奇--{{item.name}}</div>
-                         </li>
+                           <li v-for="item in productList" :style="proStyle" @click="goGood(item)">
+                               <img :src="item.cover+'?imageView2/1/w/2000/h/1200/interlace/1'" :style="proImgStyle"/>
+                               <div class="link" :style="{width:proStyle.width}" v-if="$index%2>0">偶--{{item.name}}</div>
+                               <div class="link" :style="{width:proStyle.width}" v-else>奇--{{item.name}}</div>
+                           </li>
 
-                     </ul>
-                 </div>
-             </div> 
+                       </ul>
+                   </div>
+               </div> 
 
-         </div>
-     </div>
- </div>
+           </div>
+       </div>
+   </div>
 
- <div :id="'anchor-'+2" class="index-cert">
+   <div :id="'anchor-'+2" class="index-cert">
     <div style="display:flex;flex-direction:column;width:70%;margin-left:15%;background-color:white;">
         <div class="index-label-text" style="margin-top:50px;">证书查询</div>
         <div class="cert-search-part">
             <input v-model="searchCertText" placeholder="证书编号" class="search-input" >
             <div  @click="searchCert" style="background-color:#ae0000;color:white;line-height:45px;padding-left:15px;padding-right:15px;font-size:18px;font-family: KaiTi,KaiTi_GB2312 ! important;font-weight:800;cursor:pointer;">
-               查询
-           </div>
-       </div>
-   </div>
-   <img src="../assets/img/syyj/index_temp.jpg" style="width:100%;height:auto;5">
+             查询
+         </div>
+     </div>
+ </div>
+ <img src="../assets/img/syyj/index_temp.jpg" style="width:100%;height:auto;5">
 </div>
 <div :id="'anchor-'+3" class="index-article">
     <div style="display:flex;flex-direction:column;width:70%;margin-left:15%;background-color:white;padding-bottom:50px;">
-        <div class="index-label-text" style="margin-top:50px;">玉雕文化</div>
+    <div class="index-label-text" style="margin-top:50px;cursor:pointer;" @click="goArticleList">玉雕文化</div>
         <div class="product-rec-part" style="-moz-column-count:3;-webkit-column-count:3;column-count:3;-moz-column-gap:20px;-webkit-column-gap:20px;column-gap:20px;">
             <div class="article-item" v-for="item in articleList" @click="goArticle(item)">
                 <img :src="item.cover+'?imageView2/1/w/1000/h/600/interlace/1'" >
@@ -251,9 +251,9 @@
 
         },
         beforeDestroy() {
-         clearInterval(this.prodIntval);
-     },
-     data() {
+           clearInterval(this.prodIntval);
+       },
+       data() {
         return {
             offset: 0,
             max: 10,
@@ -382,8 +382,8 @@
                 })
             },
             getArticleList(){
-               var url = "http://47.94.206.22:3001/api/article/frontGetArticleList";
-               this.$http.post(url, {
+             var url = "http://47.94.206.22:3001/api/article/frontGetArticleList";
+             this.$http.post(url, {
                 page:1,
                 size:3
             }).then((result) => {
@@ -428,6 +428,12 @@
                 params: {
                     id: item.id
                 }
+            });
+        },
+        goArticleList(){
+            this.$route.router.go({
+                name: 'articleList_item'
+                
             });
         },
         goPage(item) {
