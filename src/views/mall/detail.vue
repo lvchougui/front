@@ -18,7 +18,7 @@
                 </div>
             </div>
              <div style="height:2px;background-color:#272727;margin-top:20px;" ></div>
-             <div class="product-info-desc" style="margin-top: 20px;">{{{detail.detail}}}</div>
+             <div class="product-info-desc" style="padding:20px;">{{{detail.detail}}}</div>
          </div>
     </div>
     

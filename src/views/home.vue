@@ -147,7 +147,7 @@
                 <div class="search-part">
                     <div style="color:black;line-height:36px;padding-right:20px;padding-left:20px;background-color:#c7c7c7;">商品</div>
                     <input v-model="searchProductText" placeholder="题材、样式" class="search-input">
-                    <div class="search-btn" @click="searchProduct">
+                    <div class="search-btn" @click="goProductList">
                         <img src="../assets/img/syyj/search.png" style="width:20px;height:20px;margin-top:8px;">
                     </div>
                 </div>
@@ -161,15 +161,14 @@
                 </div>
             </div>
             <div style="width:100%;height:2px;background-color:#e7e7e7;" :id="'anchor-'+1"></div>
-            <div class="index-label-text" style="margin-top:50px;" >作品赏析</div>
+            <div class="index-label-text" style="margin-top:50px;cursor:pointer" @click="goProductList">作品赏析</div>
             <div class="product-rec-part">
                 <div class="product-rec-list" style="background:#e7e7e7;padding:10px;">
                     <div class="list-scroll" :style="{height:scrollHeight}">
                         <ul :style="{width:scrollWidth,height:scrollHeight}">
                            <li v-for="item in productList" :style="proStyle" @click="goGood(item)">
                                <img :src="item.cover+'?imageView2/1/w/2000/h/1200/interlace/1'" :style="proImgStyle"/>
-                               <div class="link" :style="{width:proStyle.width}" v-if="$index%2>0">偶--{{item.name}}</div>
-                               <div class="link" :style="{width:proStyle.width}" v-else>奇--{{item.name}}</div>
+                               <div class="link" :style="{width:proStyle.width}">{{item.name}}</div>
                            </li>
 
                        </ul>
@@ -182,9 +181,9 @@
 
    <div :id="'anchor-'+2" class="index-cert">
     <div style="display:flex;flex-direction:column;width:70%;margin-left:15%;background-color:white;">
-        <div class="index-label-text" style="margin-top:50px;">证书查询</div>
+        <div class="index-label-text" style="margin-top:50px;cursor:pointer" @click="searchCert">证书查询</div>
         <div class="cert-search-part">
-            <input v-model="searchCertText" placeholder="证书编号" class="search-input" >
+            <input id="certInput" v-model="searchCertText" placeholder="证书编号" class="search-input" >
             <div  @click="searchCert" style="background-color:#ae0000;color:white;line-height:45px;padding-left:15px;padding-right:15px;font-size:18px;font-family: KaiTi,KaiTi_GB2312 ! important;font-weight:800;cursor:pointer;">
              查询
          </div>
@@ -194,7 +193,7 @@
 </div>
 <div :id="'anchor-'+3" class="index-article">
     <div style="display:flex;flex-direction:column;width:70%;margin-left:15%;background-color:white;padding-bottom:50px;">
-    <div class="index-label-text" style="margin-top:50px;cursor:pointer;" @click="goArticleList">玉雕文化</div>
+        <div class="index-label-text" style="margin-top:50px;cursor:pointer;" @click="goArticleList">玉雕文化</div>
         <div class="product-rec-part" style="-moz-column-count:3;-webkit-column-count:3;column-count:3;-moz-column-gap:20px;-webkit-column-gap:20px;column-gap:20px;">
             <div class="article-item" v-for="item in articleList" @click="goArticle(item)">
                 <img :src="item.cover+'?imageView2/1/w/1000/h/600/interlace/1'" >
@@ -282,9 +281,10 @@
                 width: (window.screen.availWidth*0.7-213)/3-10 + 'px',
                 height: ((window.screen.availWidth*0.7-213)/3-10)*3/5 + 'px'     
             },
-            scrollHeight: (window.screen.availWidth*0.7-213)/5*2+90 +'px',
-            scrollWidth: (window.screen.availWidth*0.7-213)*3+90 + 'px',
-            swiperOption: {
+            
+           scrollHeight: (window.screen.availWidth*0.7-213)/5*2+90 +'px',
+           scrollWidth: (window.screen.availWidth*0.7-213)*3+90 + 'px',
+           swiperOption: {
                     // 所有配置均为可选（同Swiper配置）  
                     notNextTick: true,
                     autoplay: 5000,
@@ -311,9 +311,7 @@
             intval(){
                 this.prodIntval =setInterval(this.autoscroll,5000);
             },
-            change(page){
-                console.log(page);
-            },
+
             goAnchor(selector) {
 
                 var anchor = $(selector);
@@ -343,16 +341,6 @@
                 $('.list-scroll ul').stop().animate({left: distance});
             },
 
-            getServiceRule() {
-                this.$http.post('', {
-                    act: 'configure_getListByType'
-                }).then((result) => {
-                    var resp = result.data;
-                    if (result && result.data && result.data.code == 200) {
-                        this.serviceRule = result.data.data.img;
-                    }
-                })
-            },
             getAdvList() {
                 var url = "http://47.94.206.22:3001/api/banner/getBannerList";
                 this.$http.get(
@@ -394,6 +382,7 @@
         searchCert(){
             if (!this.searchCertText) {
                 alert("请输入证书编码");
+                $("#certInput").focus();
                 return;
             }else{
                 var url = "http://localhost:3001/api/cert/getFrontCertDetail/"+this.searchCertText;
@@ -422,6 +411,16 @@
                 });
             }
         },
+        goProductList(){
+            var searchKey = this.searchProductText ? this.searchProductText : '';
+            log(searchKey)
+            this.$route.router.go({
+                name: 'mallList_item',
+                query: {
+                    searchKey: searchKey
+                }
+            });
+        },
         goArticle(item){
             this.$route.router.go({
                 name: 'articleDetail_item',
@@ -441,19 +440,7 @@
             window.location.href = item.cover_link;
             
         },
-        goItemDetail: function(item) {
-            log(item);
-            if (item.type == 'preference') {
-                this.goPreferenceDetail(item.data);
-            } else if (item.type == 'channel') {
-                this.$route.router.go({
-                    name: 'channelDetail_item',
-                    params: {
-                        id: item.data.id
-                    }
-                });
-            }
-        },
+        
         goGood: function(item) {
             if (item.id > 0) {
                 this.$route.router.go({
@@ -465,97 +452,7 @@
             };
 
         },
-        goAuction: function(item) {
-            if (item.id > 0) {
-                this.$route.router.go({
-                    name: 'auctionDetail_item',
-                    params: {
-                        id: item.id
-                    }
-                });
-            };
-        },
-        goAuctionBanner: function(aid) {
-            if (aid > 0) {
-                this.$route.router.go({
-                    name: 'auctionDetail_item',
-                    params: {
-                        id: aid
-                    }
-                });
-            };
-        },
-        goBrandBanner: function(brandid) {
-            if (brandid > 0) {
-                this.$route.router.go({
-                    name: 'brandDetail_item',
-                    params: {
-                        id: brandid
-                    }
-                });
-            };
-        },
-        goChannelBanner: function(cid) {
-            if (cid > 0) {
-                this.$route.router.go({
-                    name: 'channelDetail_item',
-                    params: {
-                        id: cid
-                    }
-                });
-            };
-        },
-        goStageBanner: function(stageId) {
-            if (stageId > 0) {
-                this.$route.router.go({
-                    name: 'stage_detail',
-                    params: {
-                        id: stageId
-                    }
-                });
-            };
-        },
-        goPreferenceBanner: function(pid) {
-            if (pid > 0) {
-                this.$route.router.go({
-                    name: 'preferenceDetail_item',
-                    params: {
-                        id: pid
-                    }
-                });
-            };
-        },
-        goPreferenceDetail: function(item) {
-            if (item.id > 0) {
-                this.$route.router.go({
-                    name: 'preferenceDetail_item',
-                    params: {
-                        id: item.id
-                    }
-                });
-            };
-        },
-        goMasterDetail: function(item) {
-            log(item);
-            if (item.id > 0) {
-                this.$route.router.go({
-                    name: 'master_detail',
-                    params: {
-                        id: item.id
-                    }
-                });
-            };
-        },
-        goStageDetail: function(item) {
-            if (item.id > 0) {
-                this.$route.router.go({
-                    name: 'stage_detail',
-                    params: {
-                        id: item.id
-                    }
-                });
-            };
-        },
+        
 
     },
     computed: {

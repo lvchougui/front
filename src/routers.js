@@ -1,17 +1,20 @@
-const LoginComponent = resolve => require(['./views/login'], resolve);
-const RegisterComponent = resolve => require(['./views/register'], resolve);
-const ForgetpasswordComponent = resolve => require(['./views/modify_password'], resolve);
 import MainLayoutComponent from './views/main-layout';
 import HomeComponent from './views/home';
 
 //商品详情
 const MallDetailComponent = resolve => require(['./views/mall/detail'], resolve);
+//商品列表
+const MallListComponent = resolve => require(['./views/mall/list'], resolve);
 //证书详情
 const CertDetailComponent = resolve => require(['./views/certificate/detail'], resolve);
 //玉雕文化详情
 const ArticleDetailComponent = resolve => require(['./views/article/detail'], resolve);
 //玉雕文化列表
 const ArticleListComponent = resolve => require(['./views/article/list'], resolve);
+//大师介绍
+const MasterInfoComponent = resolve => require(['./views/brand/index'], resolve);
+//获奖作品列表
+const PrizeComponent = resolve => require(['./views/brand/list'], resolve);
 
 export default function routeConfig(router) {
     router.map({
@@ -32,6 +35,11 @@ export default function routeConfig(router) {
             name: 'mallDetail_item',
             component: MallDetailComponent
         },
+        //商品列表
+        '/mall/list': {
+            name: 'mallList_item',
+            component: MallListComponent
+        },
         //证书详情
         '/cert/detail/:certCode': {
             name: 'certDetail_item',
@@ -47,13 +55,23 @@ export default function routeConfig(router) {
             name: 'articleList_item',
             component: ArticleListComponent
         },
+        //大师介绍
+        '/master/info':{
+            name:'masterInfo_item',
+            component:MasterInfoComponent
+        },
+        //获奖列表
+        '/master/info/:year':{
+            name:'prize_item',
+            component:PrizeComponent
+        },
     });
 
-router.redirect({
-    '*': '/'
-});
+    router.redirect({
+        '*': '/'
+    });
 
-router.afterEach(({ to }) => {
+    router.afterEach(({ to }) => {
         // log(to.path);
         _hmt.push(['_trackPageview', to.path]);
     })

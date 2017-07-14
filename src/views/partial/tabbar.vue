@@ -52,18 +52,13 @@
             },
             tab4() {
                 this.$route.router.go({
-                    name: 'home',
-                    query: {
-                        tab:4
-                    },
+                    name: 'masterInfo_item',
                     
                 });
             },
             tab5() {
                 this.$route.router.go({
                     name: 'home',
-                   
-                    
                 });
             }
         }
