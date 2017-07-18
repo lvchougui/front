@@ -97,7 +97,7 @@
                 },
                 methods: {
                     getDefaultData: function() {
-                        var url = "http://localhost:3001/api/article/frontGetArticleList";
+                        var url = "http://47.94.206.22:3001/api/article/frontGetArticleList";
                         this.$http.post(url, {
                             page:this.page,
                             size:this.size
@@ -109,7 +109,7 @@
                         })
                     },
                     change(page){
-                        var url = "http://localhost:3001/api/article/frontGetArticleList";
+                        var url = "http://47.94.206.22:3001/api/article/frontGetArticleList";
                         this.page = page;
                         this.$http.post(url, {
                             page:this.page,

@@ -32,7 +32,7 @@
         </div>
     </div>
     <div style="background:#28313d;width:100%;height:50px;
-    text-align:center;line-height:50px;color:#c7c7c7;">Copyright © 2017 上玉元吉琢玉工作室. 苏ICP备XXXXXXX号-1</div>
+    text-align:center;line-height:50px;color:#c7c7c7;">Copyright © 2017 上玉元吉琢玉工作室. 苏ICP备17035757号-1</div>
 </template>
 <script>
     export default {
@@ -45,7 +45,7 @@
 <style>
     .bottom-content {
         background: url('../../assets/img/syyj/bottom_bg.jpg');
-        box-shadow: 0px -2px 6px 0px rgba(0, 0, 0, 0.12);
+        /*box-shadow: 0px -2px 6px 0px rgba(0, 0, 0, 0.12);*/
         width: 100%;
         background-size: cover !important;
         background-repeat:no-repeat;

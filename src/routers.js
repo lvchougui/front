@@ -1,5 +1,6 @@
 import MainLayoutComponent from './views/main-layout';
 import HomeComponent from './views/home';
+import OpenComponent from './views/open'
 
 //商品详情
 const MallDetailComponent = resolve => require(['./views/mall/detail'], resolve);
@@ -19,6 +20,11 @@ const PrizeComponent = resolve => require(['./views/brand/list'], resolve);
 export default function routeConfig(router) {
     router.map({
         '/': {
+            name: 'open',
+            component: OpenComponent,
+        },
+
+        '/home':{
             name: 'main',
             component: MainLayoutComponent,
             subRoutes: {

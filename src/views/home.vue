@@ -218,7 +218,7 @@
     export default {
         route: {
             data() {
-                document.title = "天工艺品";
+                document.title = "上玉元吉";
                 var tabIndex = this.$route.query.tab;
                 if (tabIndex ==4) {
 
@@ -238,10 +238,6 @@
         },
         ready() {
             document.body.style.overflow = 'visible';
-            this.$dispatch.apply(this, ['onTitleChanged', {
-                title: '优选',
-                back: false
-            }]);
             this.screenWidth = window.innerWidth / 2 - 12 + 'px';
             this.getAdvList();
             this.getRecommendProductList();
@@ -363,7 +359,8 @@
                     size:18,
                     name:''
                 }).then((result) => {
-                    this.productList = result.data;
+                    log(result)
+                    this.productList = result.data.array;
                     var that = this;
                     this.intval();
 
@@ -385,7 +382,7 @@
                 $("#certInput").focus();
                 return;
             }else{
-                var url = "http://localhost:3001/api/cert/getFrontCertDetail/"+this.searchCertText;
+                var url = "http://47.94.206.22:3001/api/cert/getFrontCertDetail/"+this.searchCertText;
                 this.$http.get(
                     url
                     )

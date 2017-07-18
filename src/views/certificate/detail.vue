@@ -147,7 +147,7 @@
                 alert("请输入证书编码");
                 return;
             }
-            var url = "http://localhost:3001/api/cert/getFrontCertDetail/"+this.certCode;
+            var url = "http://47.94.206.22:3001/api/cert/getFrontCertDetail/"+this.certCode;
             this.$http.get(
                 url
                 )

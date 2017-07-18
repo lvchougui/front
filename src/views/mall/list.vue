@@ -190,7 +190,7 @@
             },
             methods: {
                 getDataList: function() {
-                    var url = "http://localhost:3001/api/product/frontGetProductList";
+                    var url = "http://47.94.206.22:3001/api/product/frontGetProductList";
                     this.$http.post(url, {
                         page:this.page,
                         size:this.size,
@@ -203,7 +203,7 @@
                     })
                 },
                 change(page){
-                    var url = "http://localhost:3001/api/product/frontGetProductList";
+                    var url = "http://47.94.206.22:3001/api/product/frontGetProductList";
                     this.page = page;
                     log(this.page)
                     this.$http.post(url, {
@@ -218,7 +218,7 @@
                     })
                 },
                 getCates(){
-                    var url = "http://localhost:3001/api/cate/getCateList";
+                    var url = "http://47.94.206.22:3001/api/cate/getCateList";
                     this.$http.get(url).then((result) => {
                         this.cateList = result.data;
                         var cateAll ={

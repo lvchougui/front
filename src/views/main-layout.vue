@@ -18,22 +18,7 @@
 			}
 		},
 		ready(){
-			var name = this.$route.name;
-			if (name == 'home') {
-				this.position = 1
-			}
-			else if(name == 'auction'){
-				this.position = 2
-			}
-			else if(name == 'shop_index'){
-				this.position = 3
-			}
-			else if(name == 'brand_index'){
-				this.position = 4
-			}
-			else if(name == 'my'){
-				this.position = 5
-			}
+			
 		}
 	}
 </script>
