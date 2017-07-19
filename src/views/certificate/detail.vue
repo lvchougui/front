@@ -13,19 +13,19 @@
             <div style="font-size:24px;color:black;text-align:center;margin: 20px auto;font-weight:700;font-family:KaiTi,KaiTi_GB2312 ! important;">作品信息</div>
             <div style="height:2px;background-color:#272727;" ></div>
             <div class="product-info" style="margin-top:20px;">
-                <img :src="detail.cover+'?imageView2/1/w/1000/h/1000/interlace/1'" :style="imgStyle" >
+                <img :src="detail.cover+'?imageView2/1/w/1000/h/1000/interlace/1'" :style="imgStyle" style="border:10px solid #efefef;">
                 <div class="info-detail" :style="height:imgStyle.height">
-                    <div style="width:100%;text-align:center;font-size:22px;font-family:KaiTi,KaiTi_GB2312 ! important;font-weight:600;color:black;margin-top:10px;border-bottom:1px dashed #000;">{{detail.name}}</div>
-                    <div style="margin-top:20px;">作品材质：{{detail.p_material}}</div>
-                    <div style="margin-top:5px;">作品尺寸：{{detail.p_size}}</div>
-                    <div style="margin-top:5px;">作品重量：{{detail.p_weight}}</div>
-                    <div style="margin-top:20px;word-break: break-all;display: -webkit-box;-webkit-line-clamp: 3; -webkit-box-orient: vertical;">作品简介：{{detail.summary}}</div>
-                    <div id="qrcode" style="width:100px;height:100px;position:absolute;left:0;bottom:0;"></div>
+                    <div style="width:100%;text-align:center;font-size:24px;font-family:KaiTi,KaiTi_GB2312 ! important;font-weight:600;color:black;margin-top:10px;border-bottom:1px dashed #000;">{{detail.name}}</div>
+                    <div style="margin-top:25px;font-size:15px;">作品材质：{{detail.p_material}}</div>
+                    <div style="margin-top:5px;font-size:15px;">作品尺寸：{{detail.p_size}}</div>
+                    <div style="margin-top:5px;font-size:15px;">作品重量：{{detail.p_weight}}</div>
+                    <div style="margin-top:20px;word-break: break-all;display: -webkit-box;-webkit-line-clamp: 3; -webkit-box-orient: vertical;font-size:15px;">作品简介：{{detail.summary}}</div>
+                    <div id="qrcode" style="width:150px;height:150px;position:absolute;left:0;bottom:0;"></div>
                     <img src="../../assets/img/syyj/jieyuan.png" style="width:110px;position:absolute;right:20px;bottom:20px;transform:rotate(30deg)" v-if="item.is_sold">
                 </div>
             </div>
             <div style="height:2px;background-color:#272727;margin-top:20px;" ></div>
-            <div class="product-info-desc" style="margin-top: 20px;">{{{detail.detail}}}</div>
+            <div class="product-info-desc" style="margin-top: 20px;padding:40px;">{{{detail.detail}}}</div>
         </div>
     </div>
 
@@ -55,7 +55,7 @@
     .product-info{
         display: flex;
         flex-direction: row;
-        padding: 20px;
+        padding: 40px;
         width: 100%;
     }
     /*.product-info img{
@@ -64,7 +64,7 @@
     }*/
     .info-detail{
         flex: 1;
-        margin-left: 50px;
+        margin-left: 60px;
         position: relative;
         /*display: flex;*/
         /*flex-direction: column;*/
@@ -137,8 +137,8 @@
         qrcode:function () {
             $("#qrcode").qrcode({
                 text: window.location.href,
-                width:100,
-                height:100
+                width:150,
+                height:150
             });
         },
         //得到默认的数据

@@ -1,21 +1,22 @@
 <template>
     <div class="bottom-content">
-        <img src="../../assets/img/syyj/dubu.png" style="width:auto;height:100px;">
-        <div style="display:flex;flex-direction:column;height:100px;margin-left:30px;">
+        
+        <div style="display:flex;flex-direction:column;height:100px;">
             <div style="color:#ae0000;font-weight:600;font-size:15px;">联系方式</div>
             <div style="margin-top:5px;">地址：苏州市姑苏区园林路5号</div>
             <div>电话：0512-67526713</div>
         </div>
-        <div style="display:flex;flex-direction:column;height:100px;margin-left:20px;">
+        <div style="display:flex;flex-direction:column;height:100px;margin-left:30px;">
             <div style="color:#ae0000;font-weight:600;font-size:15px;">技术支持</div>
             <div style="margin-top:5px;">苏州市姑苏区上玉元吉琢玉工作室</div>
         </div>
-        <div style="display:flex;flex-direction:column;height:100px;margin-left:20px;">
+        <div style="display:flex;flex-direction:column;height:100px;margin-left:30px;">
             <div style="color:#ae0000;font-weight:600;font-size:15px;">版权声明</div>
             <div style="margin-top:5px;width:180px;">本网站内容版权归上玉元吉琢玉工作室所有</div>
         </div>
+        <img src="../../assets/img/syyj/dubu.png" style="width:auto;height:100px;margin-left:50px;">
         <div style="display:flex;flex-direction:column;justify-content:center;
-        align-items: center;margin-left:30px;">
+        align-items: center;margin-left:50px;">
             <div style="display:flex;flex-direction:row;justify-content:center;align-items:center;">
                 <img src="../../assets/img/syyj/wechat.png" style="width:20px;height:20px;" />
                 <div style="margin-left:5px;color:#ae0000;font-weight:600;font-size:15px;">微信公众号</div>

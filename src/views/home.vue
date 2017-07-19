@@ -33,9 +33,9 @@
 }
 .verticle-line{
     width:2px;
-    height:70px;
+    height:85px;
     background-color:#c7c7c7;
-    margin-top: 15px;
+    margin-top: 20px;
     margin-left: 30px; 
     margin-right: 30px;
 }
@@ -44,7 +44,7 @@
     flex-direction: row;
     height: 40px;
     flex: 1;
-    margin-top: 30px;
+    margin-top: 40px;
     border: 2px solid black;
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
@@ -79,7 +79,7 @@
 .contact-part{
     display: flex;
     flex-direction: row;
-    height: 100px;
+    height: 120px;
     justify-content: center;
     align-items: center;
 }
@@ -94,7 +94,7 @@
     line-height: 1;
 }
 .product-rec-part{
-    margin-top: 25px;
+    margin-top: 30px;
     padding-left:80px;
     padding-right:80px;
     height:auto; 
@@ -106,7 +106,7 @@
 .product-rec-part .list-scroll{ width:100%;overflow:hidden; position:relative;}
 .product-rec-part .list-scroll ul{ position:absolute; left:0; top:0; overflow:hidden;}
 .product-rec-part ul{ overflow:hidden;}
-.product-rec-part ul li{ margin-right:10px; margin-bottom:10px; overflow:hidden; position:relative; float:left;background-color: white;padding: 5px;}
+.product-rec-part ul li{ margin-right:20px; margin-bottom:20px; overflow:hidden; position:relative; float:left;background-color: white;padding: 10px;}
 .product-rec-part ul li img{ left:0; top:0; z-index:10; }
 .product-rec-part ul li:hover img{opacity: 0.8;filter: alpha(opacity=80);}
 .product-rec-part ul li div.link{ display:block; height:30px; line-height:30px; text-align:center;font-family: KaiTi,KaiTi_GB2312 ! important; color:#000; font-size:14px; z-index:20;}
@@ -116,7 +116,8 @@
     flex-direction: column;
     font-family: KaiTi,KaiTi_GB2312 ! important;
     color: black;
-    background-color: #efefef;
+    background-color: white;
+    border:10px solid #efefef;
 }
 .article-item img{width: 100%;height: auto;}
 .article-item img:hover{opacity: 0.8;filter: alpha(opacity=80);}
@@ -141,8 +142,9 @@
 
     <div class="index-product" >
         <div style="display:flex;flex-direction:column;width:70%;margin-left:15%;background-color:white;">
-            <div style="display:flex;flex-direction:row;height:100px;padding-left:80px;padding-right:80px;">
-                <div style="font-size:28px;color:black;height:100%;text-align:center;line-height:100px;font-family: KaiTi,KaiTi_GB2312 ! important;font-weight:900;">上玉元吉</div>
+        <div style="width:100%;height:2px;background-color:#efefef;margin-top:50px;"></div>
+            <div style="display:flex;flex-direction:row;height:120px;padding-left:60px;padding-right:60px;">
+                <div style="font-size:24px;color:black;height:100%;text-align:center;line-height:120px;font-family: KaiTi,KaiTi_GB2312 ! important;font-weight:900;">上玉元吉琢玉工作室</div>
                 <div class="verticle-line"></div>
                 <div class="search-part">
                     <div style="color:black;line-height:36px;padding-right:20px;padding-left:20px;background-color:#c7c7c7;">商品</div>
@@ -155,22 +157,22 @@
                 <div class="contact-part">
                     <img src="../assets/img/syyj/telephone.png" style="width:50px;height:50px;">
                     <div style="margin-left:15px;display:flex;flex-direction:column;font-family: KaiTi,KaiTi_GB2312 ! important;color:black;">
-                        <div>客服热线</div>
-                        <div>0512-67526713</div>
+                        <div>客服热线：0512-67526713</div>
+                        <div>联系手机：18625008866</div>
+                        <div>联系QQ：108528708</div>
                     </div>
                 </div>
             </div>
-            <div style="width:100%;height:2px;background-color:#e7e7e7;" :id="'anchor-'+1"></div>
-            <div class="index-label-text" style="margin-top:50px;cursor:pointer" @click="goProductList">作品赏析</div>
+            <div style="width:100%;height:2px;background-color:#efefef;" :id="'anchor-'+1"></div>
+            <div class="index-label-text" style="margin-top:60px;cursor:pointer" @click="goProductList">作品赏析</div>
             <div class="product-rec-part">
-                <div class="product-rec-list" style="background:#e7e7e7;padding:10px;">
+                <div class="product-rec-list" style="background:#efefef;padding:20px;">
                     <div class="list-scroll" :style="{height:scrollHeight}">
                         <ul :style="{width:scrollWidth,height:scrollHeight}">
                            <li v-for="item in productList" :style="proStyle" @click="goGood(item)">
                                <img :src="item.cover+'?imageView2/1/w/2000/h/1200/interlace/1'" :style="proImgStyle"/>
                                <div class="link" :style="{width:proStyle.width}">{{item.name}}</div>
                            </li>
-
                        </ul>
                    </div>
                </div> 
@@ -181,7 +183,7 @@
 
    <div :id="'anchor-'+2" class="index-cert">
     <div style="display:flex;flex-direction:column;width:70%;margin-left:15%;background-color:white;">
-        <div class="index-label-text" style="margin-top:50px;cursor:pointer" @click="searchCert">证书查询</div>
+        <div class="index-label-text" style="margin-top:60px;cursor:pointer" @click="searchCert">证书查询</div>
         <div class="cert-search-part">
             <input id="certInput" v-model="searchCertText" placeholder="证书编号" class="search-input" >
             <div  @click="searchCert" style="background-color:#ae0000;color:white;line-height:45px;padding-left:15px;padding-right:15px;font-size:18px;font-family: KaiTi,KaiTi_GB2312 ! important;font-weight:800;cursor:pointer;">
@@ -193,13 +195,13 @@
 </div>
 <div :id="'anchor-'+3" class="index-article">
     <div style="display:flex;flex-direction:column;width:70%;margin-left:15%;background-color:white;padding-bottom:50px;">
-        <div class="index-label-text" style="margin-top:50px;cursor:pointer;" @click="goArticleList">玉雕文化</div>
+        <div class="index-label-text" style="margin-top:60px;cursor:pointer;" @click="goArticleList">玉雕文化</div>
         <div class="product-rec-part" style="-moz-column-count:3;-webkit-column-count:3;column-count:3;-moz-column-gap:20px;-webkit-column-gap:20px;column-gap:20px;">
             <div class="article-item" v-for="item in articleList" @click="goArticle(item)">
                 <img :src="item.cover+'?imageView2/1/w/1000/h/600/interlace/1'" >
                 <div style="font-size:16px;margin: 10px auto;line-height: 1;border-bottom: 1px dashed black;">
                     {{item.title}}</div>
-                    <div style="padding-left:10px;padding-right:10px;padding-bottom:15px;height:70px;text-indent: 2em;word-break: break-all;display: -webkit-box;-webkit-line-clamp: 3; -webkit-box-orient: vertical;line-height:20px;">{{item.summary}}</div>
+                    <div style="padding-left:10px;padding-right:10px;padding-bottom:15px;height:75px;text-indent: 2em;word-break: break-all;display: -webkit-box;-webkit-line-clamp: 3; -webkit-box-orient: vertical;line-height:20px;font-size:14px;">{{item.summary}}</div>
                 </div>
             </div> 
         </div>
@@ -262,24 +264,24 @@
             advlist: [],
             screenWidth: '',
             firstAdv: {
-                width: window.screen.availWidth / 2 + 'px',
-                height: window.screen.availWidth / 2 * 1.288 + 'px'
+                width: document.body.clientWidth / 2 + 'px',
+                height: document.body.clientWidth / 2 * 1.288 + 'px'
             },
             secondAdv: {
-                width: window.screen.availWidth + 'px',
-                height: window.screen.availWidth * 760 / 1920 + 'px'
+                width: document.body.clientWidth + 'px',
+                height: document.body.clientWidth * 760 / 1920 + 'px'
             },
             proStyle:{
-                width: (window.screen.availWidth*0.7-213)/3 + 'px',
-                height: (window.screen.availWidth*0.7-213)/5+40 + 'px'     
+                width: (document.body.clientWidth*0.7-250)/3 + 'px',
+                height: (document.body.clientWidth*0.7-250)*2/9+40 + 'px'     
             },
             proImgStyle:{
-                width: (window.screen.availWidth*0.7-213)/3-10 + 'px',
-                height: ((window.screen.availWidth*0.7-213)/3-10)*3/5 + 'px'     
+                width: (document.body.clientWidth*0.7-250)/3-20 + 'px',
+                height: ((document.body.clientWidth*0.7-250)/3-20)*2/3 + 'px'     
             },
             
-           scrollHeight: (window.screen.availWidth*0.7-213)/5*2+90 +'px',
-           scrollWidth: (window.screen.availWidth*0.7-213)*3+90 + 'px',
+           scrollHeight: ((document.body.clientWidth*0.7-240)*2/9+40)*2+20+'px',
+           scrollWidth: (document.body.clientWidth*0.7-160)*3-60 + 'px',
            swiperOption: {
                     // 所有配置均为可选（同Swiper配置）  
                     notNextTick: true,
@@ -328,7 +330,7 @@
             },
             autoscroll() {
 
-                var $w = $('.list-scroll li').width() + 20;
+                var $w = $('.list-scroll li').width() + 40;
                 this.scrollNum++;
                 if (this.scrollNum == 3) {
                     this.scrollNum = 0;

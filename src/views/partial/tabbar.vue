@@ -68,7 +68,7 @@
     .tabbar {
         position: fixed;
         top: 0;
-        background-color: rgba(100, 100, 100, 0.50);
+        background-color: rgba(50, 50, 50, 0.50);
         box-shadow: 0px -2px 6px 0px rgba(0, 0, 0, 0.12);
         height: 100px;
         width: 100%;

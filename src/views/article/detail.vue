@@ -5,7 +5,7 @@
         <div style="font-size:28px;color:black;text-align:center;font-family: KaiTi,KaiTi_GB2312 ! important;font-weight:900;margin: 0 auto;" >{{detail.title}}</div>
         <div style="height:3px;background-color:#272727;margin-left:15%;margin-right:15%;margin-top:10px;" ></div>
         <div class="content">
-         <div class="product-info-desc" style="padding:20px;">{{{detail.detail}}}</div>
+         <div class="product-info-desc" style="padding:40px;">{{{detail.detail}}}</div>
      </div>
  </div>
 

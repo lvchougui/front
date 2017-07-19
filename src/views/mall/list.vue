@@ -6,8 +6,8 @@
         <div style="height:3px;background-color:#272727;margin-left:15%;margin-right:15%;margin-top:10px;" ></div>
         <div class="content">
 
-            <div style="display:flex;flex-direction:row;height:100px;padding-left:80px;padding-right:80px;">
-                <div style="font-size:28px;color:black;height:100%;text-align:center;line-height:100px;font-family: KaiTi,KaiTi_GB2312 ! important;font-weight:900;">上玉元吉</div>
+            <div style="display:flex;flex-direction:row;height:120px;padding-left:60px;padding-right:60px;">
+                <div style="font-size:24px;color:black;height:100%;text-align:center;line-height:120px;font-family: KaiTi,KaiTi_GB2312 ! important;font-weight:900;">上玉元吉琢玉工作室</div>
                 <div class="verticle-line"></div>
                 <div class="search-part">
                     <div style="color:black;line-height:36px;padding-right:20px;padding-left:20px;background-color:#c7c7c7;">商品</div>
@@ -20,14 +20,15 @@
                 <div class="contact-part">
                     <img src="../../assets/img/syyj/telephone.png" style="width:50px;height:50px;">
                     <div style="margin-left:15px;display:flex;flex-direction:column;font-family: KaiTi,KaiTi_GB2312 ! important;color:black;">
-                        <div>客服热线</div>
-                        <div>0512-67526713</div>
+                        <div>客服热线：0512-67526713</div>
+                        <div>联系手机：18625008866</div>
+                        <div>联系QQ：108528708</div>
                     </div>
                 </div>
             </div>
 
             <div style="width:100%;height:2px;background-color:#e7e7e7;"></div>
-            <div style="display:flex;flex-direction:row;padding:20px;margin-top:20px;">
+            <div style="display:flex;flex-direction:row;padding:20px;margin-top:20px;margin-left:20px;margin-right:20px;">
                 <div style="font-size:20px;font-weight:800;font-family: KaiTi,KaiTi_GB2312 ! important;padding-top:4px;padding-bottom:5px;color:black;">分类:</div>
                 <ul class="product-cate-list">
                     <li v-for="item in cateList" :class="{'product-cate-selected': cateId === item.id}" @click="searchById(item.id)">
@@ -129,7 +130,7 @@
             flex-direction: column;
             font-family: KaiTi,KaiTi_GB2312 ! important;
             color: black;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
         /*.article-item img{width: 100%;height: auto;}*/
         .article-item img:hover{opacity: 0.8;filter: alpha(opacity=80);}
@@ -181,8 +182,8 @@
                     size:16,
                     total:'',
                     imgStyle:{
-                        width: (document.body.clientWidth*0.7-180)/4 + 'px',
-                        height: (document.body.clientWidth*0.7-180)/4 + 'px'
+                        width: (document.body.clientWidth*0.7-192)/4-20 + 'px',
+                        height: (document.body.clientWidth*0.7-192)/4-20 + 'px'
                     },
                     searchProductText:'',
                     cateId:0
