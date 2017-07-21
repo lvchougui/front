@@ -1,20 +1,7 @@
 <template>
     <div class="bottom-content">
-        
-        <div style="display:flex;flex-direction:column;height:100px;">
-            <div style="color:#ae0000;font-weight:600;font-size:15px;">联系方式</div>
-            <div style="margin-top:5px;">地址：苏州市姑苏区园林路5号</div>
-            <div>电话：0512-67526713</div>
-        </div>
-        <div style="display:flex;flex-direction:column;height:100px;margin-left:30px;">
-            <div style="color:#ae0000;font-weight:600;font-size:15px;">技术支持</div>
-            <div style="margin-top:5px;">苏州市姑苏区上玉元吉琢玉工作室</div>
-        </div>
-        <div style="display:flex;flex-direction:column;height:100px;margin-left:30px;">
-            <div style="color:#ae0000;font-weight:600;font-size:15px;">版权声明</div>
-            <div style="margin-top:5px;width:180px;">本网站内容版权归上玉元吉琢玉工作室所有</div>
-        </div>
-        <img src="../../assets/img/syyj/dubu.png" style="width:auto;height:100px;margin-left:50px;">
+        <img src="../../assets/img/syyj/dubu.png" style="width:auto;height:100px;">
+        <div style="width:1px;margin-left:50px;background-color:#272727;"></div>
         <div style="display:flex;flex-direction:column;justify-content:center;
         align-items: center;margin-left:50px;">
             <div style="display:flex;flex-direction:row;justify-content:center;align-items:center;">
@@ -31,6 +18,21 @@
             </div>
             <img src="../../assets/img/syyj/weibo_qrcode.png" style="margin-top:5px;width:90px;height:90px;" />
         </div>
+        <div style="width:1px;margin-left:50px;background-color:#272727;"></div>
+        <div style="display:flex;flex-direction:column;height:100px;margin-left:50px;">
+            <div style="color:#ae0000;font-weight:600;font-size:15px;">联系方式</div>
+            <div style="margin-top:5px;">地址：苏州市姑苏区园林路5号</div>
+            <div>电话：0512-67526713</div>
+        </div>
+        <div style="display:flex;flex-direction:column;height:100px;margin-left:30px;">
+            <div style="color:#ae0000;font-weight:600;font-size:15px;">技术支持</div>
+            <div style="margin-top:5px;">苏州市姑苏区上玉元吉琢玉工作室</div>
+        </div>
+        <div style="display:flex;flex-direction:column;height:100px;margin-left:30px;">
+            <div style="color:#ae0000;font-weight:600;font-size:15px;">版权声明</div>
+            <div style="margin-top:5px;width:180px;">本网站内容版权归上玉元吉琢玉工作室所有</div>
+        </div>
+        
     </div>
     <div style="background:#28313d;width:100%;height:50px;
     text-align:center;line-height:50px;color:#c7c7c7;">Copyright © 2017 上玉元吉琢玉工作室. 苏ICP备17035757号-1</div>

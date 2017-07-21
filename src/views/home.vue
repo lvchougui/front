@@ -110,7 +110,9 @@
 .product-rec-part ul li img{ left:0; top:0; z-index:10; }
 .product-rec-part ul li:hover img{opacity: 0.8;filter: alpha(opacity=80);}
 .product-rec-part ul li div.link{ display:block; height:30px; line-height:30px; text-align:center;font-family: KaiTi,KaiTi_GB2312 ! important; color:#000; font-size:14px; z-index:20;}
-
+.article-list{
+    overflow: hidden;
+}
 .article-item{
     display: flex;
     flex-direction: column;
@@ -142,7 +144,7 @@
 
     <div class="index-product" >
         <div style="display:flex;flex-direction:column;width:70%;margin-left:15%;background-color:white;">
-        <div style="width:100%;height:2px;background-color:#efefef;margin-top:50px;"></div>
+            <div style="width:100%;height:2px;background-color:#efefef;margin-top:50px;"></div>
             <div style="display:flex;flex-direction:row;height:120px;padding-left:60px;padding-right:60px;">
                 <div style="font-size:24px;color:black;height:100%;text-align:center;line-height:120px;font-family: KaiTi,KaiTi_GB2312 ! important;font-weight:900;">上玉元吉琢玉工作室</div>
                 <div class="verticle-line"></div>
@@ -169,42 +171,56 @@
                 <div class="product-rec-list" style="background:#efefef;padding:20px;">
                     <div class="list-scroll" :style="{height:scrollHeight}">
                         <ul :style="{width:scrollWidth,height:scrollHeight}">
-                           <li v-for="item in productList" :style="proStyle" @click="goGood(item)">
-                               <img :src="item.cover+'?imageView2/1/w/2000/h/1200/interlace/1'" :style="proImgStyle"/>
-                               <div class="link" :style="{width:proStyle.width}">{{item.name}}</div>
-                           </li>
-                       </ul>
-                   </div>
-               </div> 
+                         <li v-for="item in productList" :style="proStyle" @click="goGood(item)">
+                             <img :src="item.cover+'?imageView2/1/w/2000/h/1200/interlace/1'" :style="proImgStyle"/>
+                             <div class="link" :style="{width:proStyle.width}">{{item.name}}</div>
+                         </li>
+                     </ul>
+                 </div>
+             </div> 
 
-           </div>
-       </div>
-   </div>
+         </div>
+     </div>
+ </div>
 
-   <div :id="'anchor-'+2" class="index-cert">
+ <div :id="'anchor-'+2" class="index-cert">
     <div style="display:flex;flex-direction:column;width:70%;margin-left:15%;background-color:white;">
         <div class="index-label-text" style="margin-top:60px;cursor:pointer" @click="searchCert">证书查询</div>
         <div class="cert-search-part">
             <input id="certInput" v-model="searchCertText" placeholder="证书编号" class="search-input" >
             <div  @click="searchCert" style="background-color:#ae0000;color:white;line-height:45px;padding-left:15px;padding-right:15px;font-size:18px;font-family: KaiTi,KaiTi_GB2312 ! important;font-weight:800;cursor:pointer;">
-             查询
-         </div>
-     </div>
- </div>
- <img src="../assets/img/syyj/index_temp.jpg" style="width:100%;height:auto;5">
+               查询
+           </div>
+       </div>
+   </div>
+   <img src="../assets/img/syyj/index_temp.jpg" style="width:100%;height:auto;5">
 </div>
 <div :id="'anchor-'+3" class="index-article">
     <div style="display:flex;flex-direction:column;width:70%;margin-left:15%;background-color:white;padding-bottom:50px;">
         <div class="index-label-text" style="margin-top:60px;cursor:pointer;" @click="goArticleList">玉雕文化</div>
-        <div class="product-rec-part" style="-moz-column-count:3;-webkit-column-count:3;column-count:3;-moz-column-gap:20px;-webkit-column-gap:20px;column-gap:20px;">
-            <div class="article-item" v-for="item in articleList" @click="goArticle(item)">
+
+        <div class="product-rec-part">
+            <!-- <div class="article-item" v-for="item in articleList" @click="goArticle(item)">
                 <img :src="item.cover+'?imageView2/1/w/1000/h/600/interlace/1'" >
                 <div style="font-size:16px;margin: 10px auto;line-height: 1;border-bottom: 1px dashed black;">
                     {{item.title}}</div>
                     <div style="padding-left:10px;padding-right:10px;padding-bottom:15px;height:75px;text-indent: 2em;word-break: break-all;display: -webkit-box;-webkit-line-clamp: 3; -webkit-box-orient: vertical;line-height:20px;font-size:14px;">{{item.summary}}</div>
                 </div>
-            </div> 
+            </div>  -->
+            <ul class="article-list">
+                <li v-for="item in articleList" style="width: 33.3%;float: left;margin-right:0;">
+                    <div class="article-item" style="background-color:white;" @click="goArticle(item)">
+                        <img :src="item.cover+'?imageView2/1/w/1000/h/600/interlace/1'" >
+                        <div style="font-size:16px;margin: 15px auto;line-height: 1;border-bottom: 1px dashed black;font-weight:600;">
+                            {{item.title}}</div>
+                            <div style="padding-left:10px;padding-right:10px;padding-bottom:15px;height:75px;text-indent: 2em;line-height:20px;font-size:14px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;">{{item.summary}}</div>
+                        </div>
+                    </div> 
+                </li>
+            </ul>
         </div>
+
+        
     </div>
     <bottom></bottom>
 </template>
@@ -248,9 +264,9 @@
 
         },
         beforeDestroy() {
-           clearInterval(this.prodIntval);
-       },
-       data() {
+         clearInterval(this.prodIntval);
+     },
+     data() {
         return {
             offset: 0,
             max: 10,
@@ -280,9 +296,9 @@
                 height: ((document.body.clientWidth*0.7-250)/3-20)*2/3 + 'px'     
             },
             
-           scrollHeight: ((document.body.clientWidth*0.7-240)*2/9+40)*2+20+'px',
-           scrollWidth: (document.body.clientWidth*0.7-160)*3-60 + 'px',
-           swiperOption: {
+            scrollHeight: ((document.body.clientWidth*0.7-240)*2/9+40)*2+20+'px',
+            scrollWidth: (document.body.clientWidth*0.7-160)*3-60 + 'px',
+            swiperOption: {
                     // 所有配置均为可选（同Swiper配置）  
                     notNextTick: true,
                     autoplay: 5000,
@@ -369,13 +385,18 @@
                 })
             },
             getArticleList(){
-             var url = "http://47.94.206.22:3001/api/article/frontGetArticleList";
-             this.$http.post(url, {
+               var url = "http://47.94.206.22:3001/api/article/frontGetArticleList";
+               this.$http.post(url, {
                 page:1,
                 size:3
             }).then((result) => {
                 log(result.data.array);
                 this.articleList = result.data.array;
+                if (this.articleList&&this.articleList.length>0) {
+                    for (var i = this.articleList.length - 1; i >= 0; i--) {
+                        this.articleList[i].summary = this.articleList[i].summary.substring(0,35)+'……';
+                    }
+                }
             })
         },
         searchCert(){

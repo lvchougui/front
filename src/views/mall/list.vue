@@ -38,15 +38,22 @@
                 </ul>
             </div>
             
-            <div style="-moz-column-count:4;-webkit-column-count:4;column-count:4;-moz-column-gap:20px;-webkit-column-gap:20px;column-gap:20px;padding:40px;">
+            <ul class="stage-detail-list activity-good-list" style="padding:40px;">
+                <li v-for="item in productList">
+                    <div class="list-product-item" style="background-color:white;margin-right: 15px;" @click="goProduct(item)">
+                        <img :src="item.cover+'?imageView2/1/w/500/h/500/interlace/1'" style="width:100%;height:auto;">
+                        <div style="font-size:16px;margin: 10px auto;line-height: 1;">{{item.name}}</div>
+                    </div> 
+                </li>
+            </ul>
+            <!-- <div style="-moz-column-count:4;-webkit-column-count:4;column-count:4;-moz-column-gap:20px;-webkit-column-gap:20px;column-gap:20px;padding:40px;column-fill:auto;">
                 <div class="article-item" style="background-color:white;" v-for="item in productList" @click="goProduct(item)">
                     <img :src="item.cover+'?imageView2/1/w/500/h/500/interlace/1'" :style="imgStyle">
-                    <div style="font-size:16px;margin: 10px auto;line-height: 1;">
-                        {{item.name}}</div>
-                    </div> 
-                </div>
+                    <div style="font-size:16px;margin: 10px auto;line-height: 1;">{{item.name}}</div>
+                </div> 
+            </div> -->
                 <div style="margin:10px auto;text-align:center;" class="page-component">
-                    <Page :current="page" size="small" :total="total" show-total @on-change="change"></Page>
+                    <Page :current="page" :page-size="size" size="small" :total="total" show-total @on-change="change"></Page>
                 </div>
 
             </div>
@@ -125,15 +132,16 @@
             border:none;
         }
 
-        .article-item{
+        .list-product-item{
             display: flex;
             flex-direction: column;
             font-family: KaiTi,KaiTi_GB2312 ! important;
             color: black;
             margin-bottom: 20px;
+            border:10px solid #efefef;
         }
         /*.article-item img{width: 100%;height: auto;}*/
-        .article-item img:hover{opacity: 0.8;filter: alpha(opacity=80);}
+        .list-product-item img:hover{opacity: 0.8;filter: alpha(opacity=80);}
         .product-cate-list{
             overflow: hidden;
             list-style-type:none;
@@ -182,8 +190,8 @@
                     size:16,
                     total:'',
                     imgStyle:{
-                        width: (document.body.clientWidth*0.7-192)/4-20 + 'px',
-                        height: (document.body.clientWidth*0.7-192)/4-20 + 'px'
+                        width: (document.body.clientWidth*0.7-120)/4-35 + 'px',
+                        height: (document.body.clientWidth*0.7-120)/4-35 + 'px'
                     },
                     searchProductText:'',
                     cateId:0
