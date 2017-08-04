@@ -28,7 +28,7 @@
                         <div style="height:1px;margin-top:40px;border-bottom:1px dashed #272727;" ></div>
                     </div>
                     <div style="margin:10px auto;text-align:center;" class="page-component">
-                        <Page :current="1" size="small" :total="total" show-total @on-change="change"></Page>
+                        <Page :current="1" :page-size="size" size="small" :total="total" show-total @on-change="change"></Page>
                     </div>
                     
                 </div>

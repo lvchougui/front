@@ -1,6 +1,6 @@
 <template>
 	<div id="first_logo" :style="contentStyle">
-		<img src="../assets/img/syyj/dubu.png">
+		<img src="../assets/img/syyj/logo.png">
 	</div>
 	<div class="open-content">
 		<img id="front6" src="../assets/img/syyj/front6.png" style="top:150px;left:-100%;opacity:0.2;">

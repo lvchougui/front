@@ -40,7 +40,7 @@ ReqHandler(Vue);
 
 import routerInit from './routers'
 const router = new VueRouter({
-	history: true,
+	history: false,
 	saveScrollPosition: false
 });
 router.afterEach((to, from, next) => {
