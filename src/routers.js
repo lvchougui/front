@@ -4,6 +4,8 @@ import OpenComponent from './views/open'
 
 //商品详情
 const MallDetailComponent = resolve => require(['./views/mall/detail'], resolve);
+//手机版商品详情
+const PhoneMallDetailComponent = resolve => require(['./views/mall/mdetail'], resolve);
 //商品列表
 const MallListComponent = resolve => require(['./views/mall/list'], resolve);
 //证书详情
@@ -40,6 +42,11 @@ export default function routeConfig(router) {
         '/mall/detail/:id': {
             name: 'mallDetail_item',
             component: MallDetailComponent
+        },
+        //手机版商品详情
+        '/mall/mdetail/:id': {
+            name: 'phoneMallDetail_item',
+            component: PhoneMallDetailComponent
         },
         //商品列表
         '/mall/list': {
