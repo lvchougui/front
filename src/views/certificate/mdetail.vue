@@ -1,35 +1,33 @@
 <template>
-    <tabbar></tabbar>
     
-    <div class="content-bg">
+    <div class="content-bg" style="padding-top:50px;">
         <div style="font-size:28px;color:black;text-align:center;font-family: KaiTi,KaiTi_GB2312 ! important;font-weight:900;margin: 0 auto;" >证书查询</div>
         <div style="height:3px;background-color:#272727;margin-left:15%;margin-right:15%;margin-top:10px;" ></div>
-        <div class="content">
-            <div class="cert-search-part">
+        <div class="mcontent">
+            <div class="mcert-search-part">
                 <input v-model="certCode" placeholder="证书编号" class="search-input" >
                 <div  @click="getDefaultData" style="background-color:#ae0000;color:white;line-height:45px;padding-left:15px;padding-right:15px;font-size:18px;font-family: KaiTi,KaiTi_GB2312 ! important;font-weight:800;cursor:pointer;">查询</div>
             </div>
-            <img :src="detail.c_cover" style="margin:0 auto;max-width:800px;margin-bottom:30px;">
+            <img :src="detail.c_cover" style="margin-bottom:30px;width:100%;">
             <div style="font-size:24px;color:black;text-align:center;margin: 20px auto;font-weight:700;font-family:KaiTi,KaiTi_GB2312 ! important;">作品信息</div>
             <div style="height:2px;background-color:#272727;" ></div>
-            <div class="product-info" style="margin-top:20px;">
-                <img :src="detail.cover+'?imageView2/1/w/1000/h/1000/interlace/1'" :style="imgStyle" style="border:10px solid #efefef;">
-                <div class="info-detail" :style="height:imgStyle.height">
+            <div style="position:relative;margin-top:20px;"></dir><img :src="detail.cover+'?imageView2/1/w/1000/h/1000/interlace/1'" style="border:10px solid #efefef;width:100%;height:auto;">
+                <img src="../../assets/img/syyj/jieyuan.png" style="width:110px;position:absolute;right:20px;top:40px;transform:rotate(30deg)" v-if="detail.is_sold==1">
+                </div>
+                <div class="info-detail" style="margin:0;">
                     <div style="width:100%;text-align:center;font-size:24px;font-family:KaiTi,KaiTi_GB2312 ! important;font-weight:600;color:black;margin-top:10px;border-bottom:1px dashed #000;">{{detail.name}}</div>
                     <div style="margin-top:25px;font-size:15px;">作品材质：{{detail.p_material}}</div>
                     <div style="margin-top:5px;font-size:15px;">作品尺寸：{{detail.p_size}}</div>
                     <div style="margin-top:5px;font-size:15px;">作品重量：{{detail.p_weight}}</div>
                     <div style="margin-top:20px;word-break: break-all;display: -webkit-box;-webkit-line-clamp: 3; -webkit-box-orient: vertical;font-size:15px;">作品简介：{{detail.summary}}</div>
-                    <div id="qrcode" style="width:150px;height:150px;position:absolute;left:0;bottom:0;"></div>
-                    <img src="../../assets/img/syyj/jieyuan.png" style="width:110px;position:absolute;right:20px;bottom:20px;transform:rotate(30deg)" v-if="detail.is_sold">
+                    <div id="qrcode" style="width:150px;height:150px;margin:30px auto;"></div>
+                    
                 </div>
-            </div>
-            <div style="height:2px;background-color:#272727;margin-top:20px;" ></div>
-            <div class="product-info-desc" style="margin-top: 20px;padding:40px;">{{{detail.detail}}}</div>
+             <div style="height:2px;background-color:#272727;margin-top:20px;" ></div>
+             <div class="product-info-desc" style="margin-top:20px;word-break">{{{detail.detail}}}</div>
         </div>
     </div>
 
-    <bottom></bottom>
 
 </template>
 <style>
@@ -43,11 +41,9 @@
         background: url('../../assets/img/syyj/mainbg.jpg');
         padding-top: 150px;
     }
-    .content{
+    .mcontent{
         display:flex;
         flex-direction:column;
-        width:70%;
-        margin-left:15%;
         background-color:white;
         margin-top: 30px;
         padding: 20px;
@@ -75,14 +71,14 @@
         height: auto;
         margin-top: 5px;
     }
-    .cert-search-part{
+    .mcert-search-part{
         display: flex;
         flex-direction: row;
         height: 50px;
         flex: 1;
         border: 4px solid #ae0000;
         border-radius: 5px;
-        width: 500px;
+        /*width: 500px;*/
         margin: 30px auto;
     }
     .search-input{
@@ -104,14 +100,9 @@
     }
 </style>
 <script>
-    import Loading from 'vux/dist/components/loading'
-    import Tabbar from '../partial/tabbar';
-    import bottom from '../partial/bottom'
 
     export default {
         components: {
-            Tabbar,
-            bottom
         },
         ready: function() {
             this.certCode = this.$route.params.certCode;
@@ -136,7 +127,7 @@
 
         qrcode:function () {
             $("#qrcode").qrcode({
-                text:"http://www.syuyj.com/#!/cert/mdetail/"+this.certCode,
+                text: window.location.href,
                 width:150,
                 height:150
             });

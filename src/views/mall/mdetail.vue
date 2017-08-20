@@ -2,8 +2,8 @@
     
     <div class="content-bg" style="padding-top:50px;">
         <div style="font-size:28px;color:black;text-align:center;font-family: KaiTi,KaiTi_GB2312 ! important;font-weight:900;margin: 0 auto;" >作品信息</div>
-        <div style="height:3px;background-color:#272727;margin-left:15%;margin-right:15%;margin-top:10px;" ></div>
-        <div class="content">
+        <div style="height:3px;background-color:#272727;margin-top:10px;width:100%;" ></div>
+        <div class="mcontent" >
                 <div style="position:relative;"></dir><img :src="detail.cover+'?imageView2/1/w/1000/h/1000/interlace/1'" style="border:10px solid #efefef;width:100%;height:auto;">
                 <img src="../../assets/img/syyj/jieyuan.png" style="width:110px;position:absolute;right:20px;top:40px;transform:rotate(30deg)" v-if="detail.is_sold==1">
                 </div>
@@ -17,7 +17,7 @@
                     
                 </div>
              <div style="height:2px;background-color:#272727;margin-top:20px;" ></div>
-             <div class="product-info-desc" style="padding:40px;">{{{detail.detail}}}</div>
+             <div class="product-info-desc" style="margin-top:20px;word-break">{{{detail.detail}}}</div>
          </div>
     </div>
     
@@ -34,11 +34,9 @@
         background: url('../../assets/img/syyj/mainbg.jpg');
         padding-top: 150px;
     }
-    .content{
+    .mcontent{
         display:flex;
         flex-direction:column;
-        width:70%;
-        margin-left:15%;
         background-color:white;
         margin-top: 30px;
         padding: 20px;

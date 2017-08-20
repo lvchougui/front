@@ -103,7 +103,7 @@
 
             qrcode:function () {
                 $("#qrcode").qrcode({
-                    text: window.location.href,
+                    text:"http://www.syuyj.com/#!/mall/mdetail/"+this.id,
                     width:150,
                     height:150
                 });
