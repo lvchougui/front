@@ -199,6 +199,7 @@
             methods: {
                 getDataList: function() {
                     var url = "http://47.94.206.22:3001/api/product/frontGetProductList";
+                    // var url = "http://localhost:3001/api/product/frontGetProductList";
                     this.$http.post(url, {
                         page:this.page,
                         size:this.size,

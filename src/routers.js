@@ -4,10 +4,14 @@ import OpenComponent from './views/open'
 
 //商品详情
 const MallDetailComponent = resolve => require(['./views/mall/detail'], resolve);
+//手机版商品详情
+const PhoneMallDetailComponent = resolve => require(['./views/mall/mdetail'], resolve);
 //商品列表
 const MallListComponent = resolve => require(['./views/mall/list'], resolve);
 //证书详情
 const CertDetailComponent = resolve => require(['./views/certificate/detail'], resolve);
+//手机版证书详情
+const PhoneCertDetailComponent = resolve => require(['./views/certificate/mdetail'], resolve);
 //玉雕文化详情
 const ArticleDetailComponent = resolve => require(['./views/article/detail'], resolve);
 //玉雕文化列表
@@ -41,6 +45,11 @@ export default function routeConfig(router) {
             name: 'mallDetail_item',
             component: MallDetailComponent
         },
+        //手机版商品详情
+        '/mall/mdetail/:id': {
+            name: 'phoneMallDetail_item',
+            component: PhoneMallDetailComponent
+        },
         //商品列表
         '/mall/list': {
             name: 'mallList_item',
@@ -50,6 +59,11 @@ export default function routeConfig(router) {
         '/cert/detail/:certCode': {
             name: 'certDetail_item',
             component: CertDetailComponent
+        },
+        //手机版证书详情
+        '/cert/mdetail/:certCode': {
+            name: 'phoneCertDetail_item',
+            component: PhoneCertDetailComponent
         },
         //玉雕文化详情
         '/article/detail/:id': {
