@@ -1,5 +1,5 @@
 <template>
-	<div id="first_logo" :style="contentStyle">
+	<div id="first_logo" :style="contentStyle"  style="display:none;">
 		<img src="../assets/img/syyj/logo.png">
 	</div>
 	<div class="open-content">
@@ -38,7 +38,7 @@
 		},
 		ready(){
 			var that = this;
-			// $('#first_logo').fadeIn(3000,function(){
+			$('#first_logo').fadeIn(4000,function(){
 				$('#first_logo').fadeOut(3000,function(){
 					$('#front1').animate({
 						opacity: '1',
@@ -71,7 +71,7 @@
 						},800);
 					});
 				});
-			// });
+			});
 			
 		}
 	}

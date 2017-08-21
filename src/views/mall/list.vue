@@ -7,7 +7,7 @@
         <div class="content">
 
             <div style="display:flex;flex-direction:row;height:120px;padding-left:60px;padding-right:60px;">
-                <div style="font-size:24px;color:black;height:100%;text-align:center;line-height:120px;font-family: KaiTi,KaiTi_GB2312 ! important;font-weight:900;">上玉元吉琢玉工作室</div>
+                <div style="font-size:24px;color:black;height:100%;text-align:center;line-height:100px;font-family: KaiTi,KaiTi_GB2312 ! important;font-weight:900;">上玉元吉琢玉工作室</div>
                 <div class="verticle-line"></div>
                 <div class="search-part">
                     <div style="color:black;line-height:36px;padding-right:20px;padding-left:20px;background-color:#c7c7c7;">商品</div>
@@ -55,7 +55,6 @@
                 <div style="margin:10px auto;text-align:center;" class="page-component">
                     <Page :current="page" :page-size="size" size="small" :total="total" show-total @on-change="change"></Page>
                 </div>
-
             </div>
         </div>
 
