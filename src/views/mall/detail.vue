@@ -17,9 +17,9 @@
                     <img src="../../assets/img/syyj/jieyuan.png" style="width:110px;position:absolute;right:20px;bottom:20px;transform:rotate(30deg)" v-if="detail.is_sold==1">
                 </div>
             </div>
-             <div style="height:2px;background-color:#272727;margin-top:20px;" ></div>
-             <div class="product-info-desc" style="padding:40px;">{{{detail.detail}}}</div>
-         </div>
+            <div style="height:2px;background-color:#272727;margin-top:20px;" ></div>
+            <div class="product-info-desc" style="padding:40px;">{{{detail.detail}}}</div>
+        </div>
     </div>
     
     <bottom></bottom>
@@ -95,19 +95,19 @@
         },
         mounted: function () {
           this.$nextTick(function () {
-                
-                this.qrcode();
-          })
+            
+            this.qrcode();
+        })
       },
       methods: {
 
-            qrcode:function () {
-                $("#qrcode").qrcode({
-                    text:"http://www.syuyj.com/#!/mall/mdetail/"+this.id,
-                    width:150,
-                    height:150
-                });
-           },
+        qrcode:function () {
+            $("#qrcode").qrcode({
+                text:"http://www.syuyj.com/#!/mall/mdetail/"+this.id,
+                width:150,
+                height:150
+            });
+        },
         //得到默认的数据
         getDefaultData: function() {
             var url = "http://47.94.206.22:3001/api/product/getProductDetail/"+this.id;
@@ -115,12 +115,14 @@
                 url
                 )
             .then((res) => {
-                log(res)
-                if (res.status == 200) {
-                    this.detail = res.data;
-                    this.qrcode();
-                };
-            })
+               if (typeof(res.data) == 'string') {
+                res.data = JSON.parse(res.data);
+            }
+            if (res.status == 200) {
+                this.detail = res.data;
+                this.qrcode();
+            };
+        })
             .catch((res) => {
                 log("error:" + JSON.stringify(res));
             });

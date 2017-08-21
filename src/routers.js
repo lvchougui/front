@@ -10,6 +10,8 @@ const PhoneMallDetailComponent = resolve => require(['./views/mall/mdetail'], re
 const MallListComponent = resolve => require(['./views/mall/list'], resolve);
 //证书详情
 const CertDetailComponent = resolve => require(['./views/certificate/detail'], resolve);
+//手机版证书查询首页
+const PhoneCertIndexComponent = resolve => require(['./views/certificate/mindex'], resolve);
 //手机版证书详情
 const PhoneCertDetailComponent = resolve => require(['./views/certificate/mdetail'], resolve);
 //玉雕文化详情
@@ -59,6 +61,11 @@ export default function routeConfig(router) {
         '/cert/detail/:certCode': {
             name: 'certDetail_item',
             component: CertDetailComponent
+        },
+        //证书查询首页
+        '/cert/mindex': {
+            name: 'mcert_item',
+            component: PhoneCertIndexComponent
         },
         //手机版证书详情
         '/cert/mdetail/:certCode': {

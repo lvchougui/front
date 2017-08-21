@@ -192,8 +192,9 @@
                查询
            </div>
        </div>
+       <img src="../assets/img/syyj/index_temp.jpg" style="width:100%;height:auto;margin-top:20px;">
    </div>
-   <img src="../assets/img/syyj/index_temp.jpg" style="width:100%;height:auto;5">
+   
 </div>
 <div :id="'anchor-'+3" class="index-article">
     <div style="display:flex;flex-direction:column;width:70%;margin-left:15%;background-color:white;padding-bottom:50px;">
@@ -357,17 +358,19 @@
 
             getAdvList() {
                 var url = "http://47.94.206.22:3001/api/banner/getBannerList";
+                // var url = "http://localhost:3001/api/banner/getBannerList";
                 this.$http.get(
                     url
                     )
                 .then((res) => {
                     if (res.status == 200) {
+                        if (typeof(res.data) == 'string') {
+                            res.data = JSON.parse(res.data);
+                        }
                         this.advlist = res.data;
                     };
-                })
-                .catch((res) => {
-                    log("error:" + JSON.stringify(res));
                 });
+                
             },
 
             getRecommendProductList() {
@@ -377,7 +380,7 @@
                     size:18,
                     name:''
                 }).then((result) => {
-                    log(result)
+                    // log(result)
                     this.productList = result.data.array;
                     var that = this;
                     this.intval();
@@ -390,7 +393,7 @@
                 page:1,
                 size:3
             }).then((result) => {
-                log(result.data.array);
+                // log(result.data.array);
                 this.articleList = result.data.array;
                 if (this.articleList&&this.articleList.length>0) {
                     for (var i = this.articleList.length - 1; i >= 0; i--) {
@@ -406,13 +409,18 @@
                 return;
             }else{
                 var url = "http://47.94.206.22:3001/api/cert/getFrontCertDetail/"+this.searchCertText;
+                // var url = "http://localhost:3001/api/cert/getFrontCertDetail/"+this.searchCertText;
                 this.$http.get(
                     url
                     )
                 .then((res) => {
-                    log(res);
+                    // log(res);
                     if (res.status == 200) {
+
                         if (res.data) {
+                            if (typeof(res.data) == 'string') {
+                                res.data = JSON.parse(res.data);
+                            }
                             this.$route.router.go({
                                 name: 'certDetail_item',
                                 params: {
@@ -425,15 +433,12 @@
                     }else{
                         alert("未查找到该证书的信息");
                     }
-                })
-                .catch((res) => {
-                    log("error:" + JSON.stringify(res));
                 });
             }
         },
         goProductList(){
             var searchKey = this.searchProductText ? this.searchProductText : '';
-            log(searchKey)
+            // log(searchKey)
             this.$route.router.go({
                 name: 'mallList_item',
                 query: {
@@ -456,7 +461,7 @@
             });
         },
         goPage(item) {
-            log(item);
+            // log(item);
             window.location.href = item.cover_link;
             
         },

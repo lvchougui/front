@@ -8,23 +8,23 @@
                 <input v-model="certCode" placeholder="证书编号" class="search-input" >
                 <div  @click="getDefaultData" style="background-color:#ae0000;color:white;line-height:45px;padding-left:15px;padding-right:15px;font-size:18px;font-family: KaiTi,KaiTi_GB2312 ! important;font-weight:800;cursor:pointer;">查询</div>
             </div>
-            <img :src="detail.c_cover" style="margin-bottom:30px;width:100%;">
+            <!-- <img :src="detail.c_cover" style="margin-bottom:30px;width:100%;"> -->
             <div style="font-size:24px;color:black;text-align:center;margin: 20px auto;font-weight:700;font-family:KaiTi,KaiTi_GB2312 ! important;">作品信息</div>
             <div style="height:2px;background-color:#272727;" ></div>
             <div style="position:relative;margin-top:20px;"></dir><img :src="detail.cover+'?imageView2/1/w/1000/h/1000/interlace/1'" style="border:10px solid #efefef;width:100%;height:auto;">
                 <img src="../../assets/img/syyj/jieyuan.png" style="width:110px;position:absolute;right:20px;top:40px;transform:rotate(30deg)" v-if="detail.is_sold==1">
-                </div>
-                <div class="info-detail" style="margin:0;">
-                    <div style="width:100%;text-align:center;font-size:24px;font-family:KaiTi,KaiTi_GB2312 ! important;font-weight:600;color:black;margin-top:10px;border-bottom:1px dashed #000;">{{detail.name}}</div>
-                    <div style="margin-top:25px;font-size:15px;">作品材质：{{detail.p_material}}</div>
-                    <div style="margin-top:5px;font-size:15px;">作品尺寸：{{detail.p_size}}</div>
-                    <div style="margin-top:5px;font-size:15px;">作品重量：{{detail.p_weight}}</div>
-                    <div style="margin-top:20px;word-break: break-all;display: -webkit-box;-webkit-line-clamp: 3; -webkit-box-orient: vertical;font-size:15px;">作品简介：{{detail.summary}}</div>
-                    <div id="qrcode" style="width:150px;height:150px;margin:30px auto;"></div>
-                    
-                </div>
-             <div style="height:2px;background-color:#272727;margin-top:20px;" ></div>
-             <div class="product-info-desc" style="margin-top:20px;word-break">{{{detail.detail}}}</div>
+            </div>
+            <div class="info-detail" style="margin:0;">
+                <div style="width:100%;text-align:center;font-size:24px;font-family:KaiTi,KaiTi_GB2312 ! important;font-weight:600;color:black;margin-top:10px;border-bottom:1px dashed #000;">{{detail.name}}</div>
+                <div style="margin-top:25px;font-size:15px;">作品材质：{{detail.p_material}}</div>
+                <div style="margin-top:5px;font-size:15px;">作品尺寸：{{detail.p_size}}</div>
+                <div style="margin-top:5px;font-size:15px;">作品重量：{{detail.p_weight}}</div>
+                <div style="margin-top:20px;word-break: break-all;display: -webkit-box;-webkit-line-clamp: 3; -webkit-box-orient: vertical;font-size:15px;">作品简介：{{detail.summary}}</div>
+                <div id="qrcode" style="width:150px;height:150px;margin:30px auto;"></div>
+                
+            </div>
+            <div style="height:2px;background-color:#272727;margin-top:20px;" ></div>
+            <div class="product-info-desc" style="margin-top:20px;word-break">{{{detail.detail}}}</div>
         </div>
     </div>
 
@@ -126,6 +126,7 @@
       methods: {
 
         qrcode:function () {
+            $('#qrcode').html("");
             $("#qrcode").qrcode({
                 text: window.location.href,
                 width:150,
@@ -144,16 +145,19 @@
                 )
             .then((res) => {
                 if (res.status == 200) {
-                        if (res.data) {
-                            this.detail = res.data;
-                            this.qrcode();
-                             $(window).scrollTop(0);
-                        }else{
-                            alert("未查找到该证书的信息");
+                    if (res.data) {
+                        if (typeof(res.data) == 'string') {
+                            res.data = JSON.parse(res.data);
                         }
+                        this.detail = res.data;
+                        this.qrcode();
+                        $(window).scrollTop(0);
                     }else{
                         alert("未查找到该证书的信息");
                     }
+                }else{
+                    alert("未查找到该证书的信息");
+                }
             })
             .catch((res) => {
                 log("error:" + JSON.stringify(res));

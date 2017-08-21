@@ -17,7 +17,7 @@
                     <img src="../../assets/img/syyj/master/2011.png" style="width:100%;margin-top:30px;cursor:pointer;" @click="goPrize(2011)">
                     <img src="../../assets/img/syyj/master/2013.png" style="width:100%;margin-top:30px;cursor:pointer;" @click="goPrize(2013)">
                    <img src="../../assets/img/syyj/master/2015.png" style="width:100%;margin-top:30px;cursor:pointer;" @click="goPrize(2015)">
-                   <img src="../../assets/img/syyj/master/2017.png" style="width:100%;margin-top:60px;cursor:pointer;" @click="goPrize(2017)">
+                   <img src="../../assets/img/syyj/master/2017.png" style="width:100%;margin-top:60px;cursor:pointer;margin-bottom:40px;" @click="goPrize(2017)">
                 </div>
                 <div style="width:5px;background-color:rgba(100, 100, 100, 0.50);"></div>
                 <div style="flex:1;display:flex;flex-direction:column;" >
@@ -80,7 +80,9 @@
             getDefaultData: function() {
                 var url = "http://47.94.206.22:3001/companyPc/api/account/getConfig";
                 this.$http.get(url).then((result) => {
-                    
+                     if (typeof(result.data) == 'string') {
+                            result.data = JSON.parse(result.data);
+                        }
                     this.detail = result.data.result[0];
                     log(this.detail);
                 })

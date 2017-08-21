@@ -9,7 +9,7 @@
                 <input v-model="certCode" placeholder="证书编号" class="search-input" >
                 <div  @click="getDefaultData" style="background-color:#ae0000;color:white;line-height:45px;padding-left:15px;padding-right:15px;font-size:18px;font-family: KaiTi,KaiTi_GB2312 ! important;font-weight:800;cursor:pointer;">查询</div>
             </div>
-            <img :src="detail.c_cover" style="margin:0 auto;max-width:800px;margin-bottom:30px;">
+            <!-- <img :src="detail.c_cover" style="margin:0 auto;max-width:800px;margin-bottom:30px;"> -->
             <div style="font-size:24px;color:black;text-align:center;margin: 20px auto;font-weight:700;font-family:KaiTi,KaiTi_GB2312 ! important;">作品信息</div>
             <div style="height:2px;background-color:#272727;" ></div>
             <div class="product-info" style="margin-top:20px;">
@@ -135,6 +135,7 @@
       methods: {
 
         qrcode:function () {
+            $('#qrcode').html("");
             $("#qrcode").qrcode({
                 text:"http://www.syuyj.com/#!/cert/mdetail/"+this.certCode,
                 width:150,
@@ -152,20 +153,22 @@
                 url
                 )
             .then((res) => {
+
                 if (res.status == 200) {
-                        if (res.data) {
-                            this.detail = res.data;
-                            this.qrcode();
-                             $(window).scrollTop(0);
-                        }else{
-                            alert("未查找到该证书的信息");
+                    if (res.data) {
+
+                        if (typeof(res.data) == 'string') {
+                            res.data = JSON.parse(res.data);
                         }
+                        this.detail = res.data;
+                        this.qrcode();
+                        $(window).scrollTop(0);
                     }else{
                         alert("未查找到该证书的信息");
                     }
-            })
-            .catch((res) => {
-                log("error:" + JSON.stringify(res));
+                }else{
+                    alert("未查找到该证书的信息");
+                }
             });
         },
 

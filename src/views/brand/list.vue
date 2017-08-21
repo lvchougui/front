@@ -10,7 +10,7 @@
                     <div class="info-detail" :style="height:imgStyle.height">
                         <div style="width:100%;text-align:center;font-family:KaiTi,KaiTi_GB2312 ! important;font-weight:600;color:black;margin-top:10px;">
                         <span style="border-bottom:1px solid #000;font-size:24px;">{{item.title}}</span></div>
-                        <div style="margin-top:20px;word-break: break-all;display: -webkit-box;-webkit-line-clamp: 3; -webkit-box-orient: vertical;line-height:20px;text-indent:2em;font-size:15px;">{{item.summary}}</div>
+                        <div style="margin-top:20px;word-break: break-all;display: -webkit-box;-webkit-line-clamp: 3; -webkit-box-orient: vertical;line-height:20px;text-indent:2em;font-size:15px;">{{{item.summary}}}</div>
                         <div style="position:absolute;right:0;bottom:0;font-size:15px;">{{item.honor_year}}/{{item.honor_date}}</div>
                     </div>
                     <img :src="item.cover+'?imageView2/1/w/1200/h/800/interlace/1'" :style="imgStyle" style="margin-left:30px;">
@@ -20,7 +20,7 @@
                     <div class="info-detail" :style="height:imgStyle.height" style="margin-left:30px;">
                         <div style="width:100%;text-align:center;font-family:KaiTi,KaiTi_GB2312 ! important;font-weight:600;color:black;margin-top:10px;">
                         <span style="border-bottom:1px solid #000;font-size:24px;">{{item.title}}</span></div>
-                        <div style="margin-top:20px;word-break: break-all;display: -webkit-box;-webkit-line-clamp: 3; -webkit-box-orient: vertical;line-height:20px;text-indent:2em;font-size:15px;">{{item.summary}}</div>
+                        <div style="margin-top:20px;word-break: break-all;display: -webkit-box;-webkit-line-clamp: 3; -webkit-box-orient: vertical;line-height:20px;text-indent:2em;font-size:15px;">{{{item.summary}}}</div>
                         <div style="position:absolute;right:0;bottom:0;font-size:15px;">{{item.honor_year}}/{{item.honor_date}}</div>
 
                     </div>
@@ -106,7 +106,7 @@
                     
                     this.prizeList = result.data.array;
                     this.total = result.data.counts;
-                    log(this.total);
+                    log(result);
                 })
             },
             change(page){

@@ -229,6 +229,9 @@
                 getCates(){
                     var url = "http://47.94.206.22:3001/api/cate/getCateList";
                     this.$http.get(url).then((result) => {
+                         if (typeof(result.data) == 'string') {
+                            result.data = JSON.parse(result.data);
+                        }
                         this.cateList = result.data;
                         var cateAll ={
                             name:'全部',
