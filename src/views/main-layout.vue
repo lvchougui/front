@@ -25,6 +25,6 @@
 
 <style>
 	.main-content {
-		
+		background: url('../assets/img/syyj/mainbg.jpg');
 	}
 </style>

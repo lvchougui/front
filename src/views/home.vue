@@ -12,24 +12,24 @@
   }  
   .top_bg{
     height:100px;
-    background: url('../assets/img/syyj/bg1.jpg');
+    /*background: url('../assets/img/syyj/bg1.jpg');*/
 }
 .index-product{
     width: 100%;
     height: auto;
-    background: url('../assets/img/syyj/bg2.jpg');
+    /*background: url('../assets/img/syyj/bg2.jpg');*/
     margin-top: -5px;
 }
 .index-cert{
     width: 100%;
     height: auto;
-    background: url('../assets/img/syyj/bg3.jpg');
+    /*background: url('../assets/img/syyj/bg3.jpg');*/
     margin-bottom: -5px;
 }
 .index-article{
     width: 100%;
     height: auto;
-    background: url('../assets/img/syyj/bg4.jpg');
+    /*background: url('../assets/img/syyj/bg4.jpg');*/
 }
 .verticle-line{
     width:2px;
@@ -192,7 +192,7 @@
                查询
            </div>
        </div>
-       <img src="../assets/img/syyj/index_temp.jpg" style="width:100%;height:auto;margin-top:20px;">
+       <a href="http://syuyj.com/#!/mall/detail/75"><img src="../assets/img/syyj/index_temp.jpg" style="width:100%;height:auto;margin-top:20px;"></a>
    </div>
    
 </div>
@@ -237,7 +237,7 @@
     export default {
         route: {
             data() {
-                document.title = "上玉元吉";
+                document.title = "上玉元吉琢玉工作室";
                 var tabIndex = this.$route.query.tab;
                 if (tabIndex ==4) {
 
