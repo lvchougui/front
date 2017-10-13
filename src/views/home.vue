@@ -237,7 +237,7 @@
     export default {
         route: {
             data() {
-                document.title = "上玉元吉琢玉工作室";
+                document.title = "上玉元吉·李剑琢玉工作室";
                 var tabIndex = this.$route.query.tab;
                 if (tabIndex ==4) {
 
