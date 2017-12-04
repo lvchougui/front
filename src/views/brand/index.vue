@@ -5,7 +5,7 @@
         <div style="font-size:28px;color:black;text-align:center;font-family: KaiTi,KaiTi_GB2312 ! important;font-weight:900;margin: 0 auto;" >上玉元吉琢玉工作室</div>
         <div style="height:3px;background-color:#272727;margin-left:15%;margin-right:15%;margin-top:10px;" ></div>
         <div class="content" style="padding:80px;">
-            <img src="../../assets/img/syyj/master/master.jpg" style="width:80%;height:auto;margin:0 auto;">
+            <img src="../../assets/img/syyj/master/master.png" style="width:80%;height:auto;margin:0 auto;">
             <div style="margin-top:40px;">{{{detail.master_desc}}}</div>
             <div style="font-size:24px;color:black;text-align:center;margin: 10px auto;font-weight:700;font-family:KaiTi,KaiTi_GB2312 ! important;">荣誉成就</div>
             <div style="height:2px;background-color:#272727;" ></div>
